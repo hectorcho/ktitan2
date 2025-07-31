@@ -1,12 +1,15 @@
+// src/App.tsx
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { ColorModeContext, useMode } from './theme';
 import Sidebar from './components/Sidebar';
 import Topbar from './components/Topbar';
-import MapComponent from './components/MapComponent';
+
 import MapPage from './pages/MapPage';
 import RiskPage from './pages/RiskPage';
+import ReportPage from './pages/ReportPage';
+import DashboardPage from './pages/DashboardPage';
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -24,8 +27,10 @@ function App() {
           <main className='content'>
             <Topbar />
             <Routes>
+              <Route path='/' element={<DashboardPage />} />
               <Route path='/map' element={<MapPage />} />
               <Route path='/riskdata' element={<RiskPage />} />
+              <Route path='/report' element={<ReportPage />} />
             </Routes>
             
 

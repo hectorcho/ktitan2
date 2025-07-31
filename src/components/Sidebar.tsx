@@ -10,6 +10,9 @@ import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import SummarizeOutlinedIcon from '@mui/icons-material/SummarizeOutlined';
+import NewspaperOutlinedIcon from '@mui/icons-material/NewspaperOutlined';
+import FeedOutlinedIcon from '@mui/icons-material/FeedOutlined';
 
 interface SidebarItemProps {
   title: string;
@@ -129,8 +132,10 @@ const Sidebar: React.FC = () => {
                   조용현
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                  미래혁신연구센터 연구원
+                  미래혁신연구센터<br />
+                  차세대C5시스템과<br />
                 </Typography>
+                
               </Box>
             </Box>
           )}
@@ -140,6 +145,30 @@ const Sidebar: React.FC = () => {
               title="Dashboard"
               to="/"
               icon={<HomeOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            <Item
+              title="Summary Report"
+              to="/report"
+              icon={<SummarizeOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            <Item
+              title="News Feed"
+              to="/newsfeed"
+              icon={<NewspaperOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            <Item
+              title="Community Feed"
+              to="/communityfeed"
+              icon={<FeedOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
