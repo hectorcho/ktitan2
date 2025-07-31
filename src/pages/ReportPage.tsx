@@ -14,7 +14,7 @@ const ReportPage: React.FC = () => {
       <Header title="Summary Report" subtitle="Summary of today outlook" />
 
 
-      <Box sx={{height: '75vh', border: `1px solid ${colors.grey[100]}`, borderRadius: '4px'}}>
+      <Box sx={{height: '75vh', backgroundColor: colors.primary[400]}}>
         <ReportComponent />
       </Box>
     </Box>

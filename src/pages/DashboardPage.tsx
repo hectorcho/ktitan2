@@ -5,6 +5,7 @@ import { tokens } from "../theme";
 import KeywordBox from "../components/KeywordBox";
 import Header from "../components/Header";
 import MapComponent from "../components/MapComponent";
+import LineChart from "../components/LineChart";
 
 const DashboardPage: React.FC = () => {
   const theme = useTheme();
@@ -17,7 +18,7 @@ const DashboardPage: React.FC = () => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          mb: '20px'
+          mb: "20px",
         }}
       >
         <Header title="K-Titan" subtitle="조용현님 환영합니다" />
@@ -132,7 +133,7 @@ const DashboardPage: React.FC = () => {
           display: "grid",
           gridTemplateColumns: "repeat(12, 1fr)",
           gap: "20px",
-          gridAutoRows: '35vh'
+          gridAutoRows: "35vh",
         }}
       >
         {/* ROW 1 */}
@@ -145,7 +146,7 @@ const DashboardPage: React.FC = () => {
             justifyContent: "center",
           }}
         >
-          <Typography>LineChart</Typography>
+          <LineChart url="https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/gpr_daily.csv" />
         </Box>
 
         <Box
@@ -157,7 +158,7 @@ const DashboardPage: React.FC = () => {
             justifyContent: "center",
           }}
         >
-          <MapComponent initialPosition={[36.3504, 144.3845]} zoomLevel={2}/>
+          <MapComponent initialPosition={[36.3504, 144.3845]} zoomLevel={2} />
         </Box>
 
         <Box

@@ -43,30 +43,20 @@ const useLoadFinalReport = () => {
   return { content, isLoading, loadingError };
 };
 
-interface ReportComponentProps {
-  content: string;
-  isLoading: boolean;
-  loadingError: string | null;
-};
-
 const ReportComponent: React.FC = () => {
   const { content, isLoading, loadingError } = useLoadFinalReport();
   return (
     <div
       style={{
-        padding: '15px',
-        overflowY: 'auto',
-        height: '100%'
+        padding: "15px",
+        overflowY: "auto",
+        height: "100%",
       }}
       className="report-markdown-container"
     >
-      <ReactMarkdown remarkPlugins={[remarkGfm]}>
-        {content}
-      </ReactMarkdown>
+      <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
     </div>
-
-  )
+  );
 };
 
 export default ReportComponent;
-
