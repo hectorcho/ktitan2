@@ -196,7 +196,7 @@ export const themeSettings = (mode: PaletteMode) => {
   };
 };
 
-interface ColorModeContextType {
+export interface ColorModeContextType {
   toggleColorMode: () => void;
 }
 

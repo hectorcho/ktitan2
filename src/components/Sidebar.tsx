@@ -1,14 +1,189 @@
-import { useState } from "react";
-import { Menu, Sidebar, MenuItem} from "react-pro-sidebar";
+import { useState, type ReactNode } from "react";
+import { Menu, Sidebar as ProSidebar, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
-import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { tokens } from "../theme";
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
-import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
-import TimelineOutlinedIcon from '@mui/icons-material/TimelineOutlined';
-import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
+import type { SvgIconProps } from "@mui/material";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
+import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
+import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
+import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 
 interface SidebarItemProps {
   title: string;
+  to: string;
+  icon: ReactNode;
+  selected: string;
+  setSelected: (title: string) => void;
+}
+
+const Item: React.FC<SidebarItemProps> = ({
+  title,
+  to,
+  icon,
+  selected,
+  setSelected,
+}) => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    setSelected(title);
+    navigate(to);
+  }
+
+  return (
+    <MenuItem
+      active={selected === title}
+      style={{ color: colors.grey[100] }}
+      onClick={handleClick}
+      icon={icon}
+    >
+      <Typography>{title}</Typography>
+      
+      {/* {navigate(to)} */}
+    </MenuItem>
+    
+  );
 };
+
+const Sidebar: React.FC = () => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
+  const [selected, setSelected] = useState<string>("Dashboard");
+
+  return (
+    <Box
+      sx={{
+        "& .ps-sidebar-root": {
+          borderRight: 0
+        },
+        "& .ps-sidebar-container": {
+          background: `${colors.primary[400]} !important`,
+        },
+        "& .ps-menu-icon": {
+          backgroundColor: "transparent !important",
+        },
+        "& .ps-menu-button": {
+          padding: "5px 35px 5px 20px !important",
+        },
+        "& .ps-menu-button:hover": {
+          color: "#868dfb !important",
+        },
+        "& .ps-menu-button.ps-active": {
+          color: "#6870fa !important",
+        },
+        flex: 1,
+        display: 'flex'
+      }}
+    >
+      <ProSidebar collapsed={isCollapsed}>
+        <Menu>
+          {/* Logo and Menu Icon */}
+          <MenuItem
+            onClick={() => setIsCollapsed(!isCollapsed)}
+            icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
+            style={{
+              margin: "10px 0 20px 0",
+              color: colors.grey[100],
+            }}
+          >
+            {!isCollapsed && (
+              <Box
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                ml="15px"
+              >
+                <Typography variant="h3" color={colors.grey[100]}>
+                  ADMINS
+                </Typography>
+                <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
+                  <MenuOutlinedIcon />
+                </IconButton>
+              </Box>
+            )}
+          </MenuItem>
+          {!isCollapsed && (
+            <Box mb="25px">
+              <Box display="flex" justifyContent="center" alignItems="center">
+                {/* <img
+                  alt="profile-user"
+                  width="100px"
+                  height="100px"
+                  src={`../../assets/user.png`}
+                  style={{ cursor: "pointer", borderRadius: "50%" }}
+                /> */}
+              </Box>
+              <Box textAlign="center">
+                <Typography
+                  variant="h2"
+                  color={colors.grey[100]}
+                  fontWeight="bold"
+                  sx={{ m: "10px 0 0 0" }}
+                >
+                  조용현
+                </Typography>
+                <Typography variant="h5" color={colors.greenAccent[500]}>
+                  미래혁신연구센터 연구원
+                </Typography>
+              </Box>
+            </Box>
+          )}
+
+          <Box paddingLeft={isCollapsed ? undefined: '10%'}>
+            <Item
+              title="Dashboard"
+              to="/"
+              icon={<HomeOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            <Item
+              title="Map"
+              to="/map"
+              icon={<MapOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            <Item
+              title="Keyword Filters"
+              to="/kwfilters"
+              icon={<FilterAltOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            <Item
+              title="Risk Data"
+              to="/riskdata"
+              icon={<TimelineOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            <Item
+              title="Calendar"
+              to="/calendar"
+              icon={<CalendarTodayOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+          </Box>
+
+
+
+        </Menu>
+      </ProSidebar>
+    </Box>
+  );
+};
+
+export default Sidebar;
