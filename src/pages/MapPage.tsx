@@ -10,12 +10,12 @@ const MapPage: React.FC = () => {
   const colors = tokens(theme.palette.mode);
 
   return (
-    <Box sx={{m: '20px'}}>
+    <Box sx={{m: '20px', display: 'flex', flexDirection: 'column', flexGrow: 1}}>
 
       <Header title="Map" subtitle="Map data" />
 
 
-      <Box sx={{height: '75vh', border: `1px solid ${colors.grey[100]}`, borderRadius: '4px'}}>
+      <Box sx={{flexGrow: 1, border: `1px solid ${colors.grey[100]}`, borderRadius: '4px'}}>
         <MapComponent initialPosition={[36.3504, 144.3845]} zoomLevel={2}/>
       </Box>
     </Box>

@@ -9,18 +9,14 @@ const ReportPage: React.FC = () => {
   const colors = tokens(theme.palette.mode);
 
   return (
-    <Box sx={{m: '20px'}}>
-
+    <Box sx={{ m: "20px", display: "flex", flexDirection: "column", overflowY: 'hidden' }}>
       <Header title="Summary Report" subtitle="Summary of today outlook" />
 
-
-      <Box sx={{height: '75vh', backgroundColor: colors.primary[400]}}>
+      <Box sx={{ flexGrow: 1, backgroundColor: colors.primary[400], overflowY: 'auto', }}>
         <ReportComponent />
       </Box>
     </Box>
-    
-    
-  )
+  );
 };
 
 export default ReportPage;

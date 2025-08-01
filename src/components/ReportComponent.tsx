@@ -49,8 +49,6 @@ const ReportComponent: React.FC = () => {
     <div
       style={{
         padding: "15px",
-        overflowY: "auto",
-        height: "100%",
       }}
       className="report-markdown-container"
     >
