@@ -10,6 +10,7 @@ import MapPage from './pages/MapPage';
 import RiskPage from './pages/RiskPage';
 import ReportPage from './pages/ReportPage';
 import DashboardPage from './pages/DashboardPage';
+import KeywordFilterPage from './pages/KeywordFilterPage';
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -31,6 +32,7 @@ function App() {
               <Route path='/map' element={<MapPage />} />
               <Route path='/riskdata' element={<RiskPage />} />
               <Route path='/report' element={<ReportPage />} />
+              <Route path='/kwfilters' element={<KeywordFilterPage />} />
             </Routes>
             
 

@@ -1,9 +1,9 @@
 // src/components/LineChart.tsx
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import Plot from "react-plotly.js";
 import { csvParse } from "d3-dsv";
-import type { Data, Layout, Config, Margin } from "plotly.js";
+import type { Data, Layout, Config, Margin, Datum } from "plotly.js";
 import { useTheme } from "@mui/material";
 import { tokens } from "../theme";
 
@@ -22,6 +22,10 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [chartData, setChartData] = useState<DataRow[]>([]);
+
+  const [dataCols, setDataCols] = useState<string[]>([]);
+  const [dataRows, setDataRows] = useState<any[]>([]);
+
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [dashboard, setDashboard] = useState<boolean>(isDashboard);
@@ -39,14 +43,17 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard }) => {
 
         const data = await response.text();
         console.log("fetched from github");
-        const parsedData: DataRow[] = csvParse(data, (d: any) => {
-          return {
-            date: d.DAY,
-            value: +d.GPRD,
-          } as DataRow;
-        }) as DataRow[];
+        // const parsedData: DataRow[] = csvParse(data, (d: any) => {
+        //   return {
+        //     date: d.DAY,
+        //     value: +d.GPRD,
+        //   } as DataRow;
+        // }) as DataRow[];
+        const parsedData = csvParse(data, d => d);
 
-        setChartData(parsedData);
+        // setChartData(parsedData);
+        setDataCols(parsedData.columns);
+        setDataRows(parsedData);
       } catch (err) {
         const errMessage = `ERROR: Failed to fetch final report. ${err}`;
         setError(errMessage);
@@ -57,16 +64,50 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard }) => {
     fetchData();
   }, [url]);
 
-  const trace1: Data = {
-    x: chartData.map((row) => row.date),
-    y: chartData.map((row) => row.value),
-    mode: "lines",
-    name: "GPR",
-    type: "scatter",
-    line: {
-      color: colors.greenAccent[400],
-    },
-  };
+  const traces = useMemo(() => {
+    if (dataRows.length === 0 || dataCols.length < 2) return [];
+
+    // Get name of first column to set it to x-axis
+    const xName = dataCols[0];
+    const xData = dataRows.map(row => row[xName]);
+
+    // Create a trace for subsequent columns
+    const yNames = dataCols.slice(1);
+
+    const lineColors = [
+      colors.greenAccent[500],
+      colors.redAccent[200],
+      colors.blueAccent[300]
+    ];
+
+    const generatedTraces = yNames.map((yName, idx) => {
+      const trace: Data = {
+        x: xData,
+        y: dataRows.map(row => +row[yName]),
+        type: 'scatter',
+        mode: 'lines',
+        name: yName,
+        line: {
+          color: lineColors[idx]
+        }
+      };
+      return trace;
+    });
+    const reversedTraces = [...generatedTraces].reverse();
+    return reversedTraces;
+  }, [dataRows, dataCols]);
+
+
+  // const trace1: Data = {
+  //   x: chartData.map((row) => row.date),
+  //   y: chartData.map((row) => row.value),
+  //   mode: "lines",
+  //   name: "GPR",
+  //   type: "scatter",
+  //   line: {
+  //     color: colors.greenAccent[400],
+  //   },
+  // };
 
   const marginLayout: Partial<Margin> = {
     b: 40,
@@ -78,6 +119,11 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard }) => {
   const layout: Partial<Layout> = {
     autosize: true,
     margin: dashboard ? marginLayout : undefined,
+    legend: {
+      font: {
+        color: colors.grey[100]
+      }
+    },
     title: {
       text: "GPR Index",
       font: {
@@ -159,7 +205,7 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard }) => {
   };
   return (
     <Plot
-      data={[trace1]}
+      data={traces}
       layout={layout}
       config={config}
       style={{ width: "100%", height: "100%" }}

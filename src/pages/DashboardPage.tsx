@@ -46,7 +46,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <KeywordBox title="미국" subtitle="News" />
+            <KeywordBox title="한국" subtitle="News" />
           </Box>
           <Box
             sx={{
@@ -57,7 +57,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <KeywordBox title="미국" subtitle="News" />
+            <KeywordBox title="한국" subtitle="News" />
           </Box>
           <Box
             sx={{
@@ -68,7 +68,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <KeywordBox title="미국" subtitle="News" />
+            <KeywordBox title="한국" subtitle="News" />
           </Box>
           <Box
             sx={{
@@ -79,7 +79,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <KeywordBox title="미국" subtitle="News" />
+            <KeywordBox title="한국" subtitle="News" />
           </Box>
 
           <Box
@@ -91,7 +91,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <KeywordBox title="미국" subtitle="News" />
+            <KeywordBox title="한국" subtitle="Community" />
           </Box>
           <Box
             sx={{
@@ -102,7 +102,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <KeywordBox title="미국" subtitle="News" />
+            <KeywordBox title="한국" subtitle="Community" />
           </Box>
           <Box
             sx={{
@@ -113,7 +113,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <KeywordBox title="미국" subtitle="News" />
+            <KeywordBox title="한국" subtitle="Community" />
           </Box>
           <Box
             sx={{
@@ -124,7 +124,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <KeywordBox title="미국" subtitle="News" />
+            <KeywordBox title="한국" subtitle="Community" />
           </Box>
         </Box>
       </Box>
@@ -163,7 +163,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <MapComponent initialPosition={[36.3504, 144.3845]} zoomLevel={2} />
+            <MapComponent initialPosition={[37.5665, 126.9780]} zoomLevel={2} />
           </Box>
 
           <Box
