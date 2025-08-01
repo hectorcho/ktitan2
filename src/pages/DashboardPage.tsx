@@ -146,7 +146,10 @@ const DashboardPage: React.FC = () => {
             justifyContent: "center",
           }}
         >
-          <LineChart url="https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/gpr_daily.csv" />
+          <LineChart
+            url="https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/gpr_daily.csv"
+            isDashboard={true}
+          />
         </Box>
 
         <Box

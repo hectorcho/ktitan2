@@ -9,6 +9,7 @@ import { tokens } from "../theme";
 
 interface LineChartProps {
   url: string;
+  isDashboard: boolean;
 }
 
 interface DataRow {
@@ -17,12 +18,13 @@ interface DataRow {
   [key: string]: any;
 }
 
-const LineChart: React.FC<LineChartProps> = ({ url }) => {
+const LineChart: React.FC<LineChartProps> = ({ url, isDashboard }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [chartData, setChartData] = useState<DataRow[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [dashboard, setDashboard] = useState<boolean>(isDashboard);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -76,7 +78,7 @@ const LineChart: React.FC<LineChartProps> = ({ url }) => {
     },
     xaxis: {
       title: {
-        text: "Date",
+        text: dashboard ? "" : "Date",
         font: {
           color: colors.grey[100],
         },
@@ -117,7 +119,7 @@ const LineChart: React.FC<LineChartProps> = ({ url }) => {
           },
         ],
       },
-      rangeslider: {
+      rangeslider: dashboard ? {visible: false} : {
         visible: true,
         thickness: 0.07,
       },
