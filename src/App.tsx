@@ -24,7 +24,7 @@ function App() {
           {/* SIDE BAR */}
           <Sidebar />
           
-          <main className='content'>
+          <main className='content' style={{display: 'flex', flexDirection: 'column'}}>
             <Topbar />
             <Routes>
               <Route path='/' element={<DashboardPage />} />

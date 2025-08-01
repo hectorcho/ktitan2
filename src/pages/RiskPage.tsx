@@ -12,12 +12,12 @@ const RiskPage: React.FC = () => {
 
 
   return (
-    <Box sx={{ m: "20px" }}>
+    <Box sx={{ m: "20px", display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
       <Header title="Risk Data" subtitle="Geopolitical Risks" />
 
       <Box
         sx={{
-          height: "75vh",
+          flexGrow: 1
         }}
       >
         <LineChart

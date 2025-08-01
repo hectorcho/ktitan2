@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Plot from "react-plotly.js";
 import { csvParse } from "d3-dsv";
-import type { Data, Layout, Config } from "plotly.js";
+import type { Data, Layout, Config, Margin } from "plotly.js";
 import { useTheme } from "@mui/material";
 import { tokens } from "../theme";
 
@@ -68,8 +68,16 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard }) => {
     },
   };
 
+  const marginLayout: Partial<Margin> = {
+    b: 40,
+    t: 40,
+    r: 40,
+    l: 40
+  };
+
   const layout: Partial<Layout> = {
     autosize: true,
+    margin: dashboard ? marginLayout : undefined,
     title: {
       text: "GPR Index",
       font: {
@@ -135,6 +143,8 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard }) => {
       tickfont: {
         color: colors.grey[100],
       },
+      visible: dashboard ? false : true
+      
     },
 
     hovermode: "closest",

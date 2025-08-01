@@ -11,7 +11,9 @@ const DashboardPage: React.FC = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   return (
-    <Box sx={{ m: "20px" }}>
+    <Box
+      sx={{ m: "20px", display: "flex", flexDirection: "column", flexGrow: 1 }}
+    >
       {/* HEADER */}
       <Box
         sx={{
@@ -127,67 +129,70 @@ const DashboardPage: React.FC = () => {
         </Box>
       </Box>
 
-      {/* GRID & CHARTS */}
-      <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: "repeat(12, 1fr)",
-          gap: "20px",
-          gridAutoRows: "35vh",
-        }}
-      >
-        {/* ROW 1 */}
+      <Box sx={{ flexGrow: 1 }}>
         <Box
           sx={{
-            gridColumn: "span 8",
-            backgroundColor: `${colors.primary[400]}`,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            display: "grid",
+            gridTemplateColumns: "repeat(12, 1fr)",
+            minHeight: '100%',
+            gap: "20px",
           }}
         >
-          <LineChart
-            url="https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/gpr_daily.csv"
-            isDashboard={true}
-          />
-        </Box>
+          {/* ROW 1 */}
+          <Box
+            sx={{
+              gridColumn: "span 8",
+              backgroundColor: `${colors.primary[400]}`,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <LineChart
+              url="https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/gpr_daily.csv"
+              isDashboard={true}
+            />
+          </Box>
 
-        <Box
-          sx={{
-            gridColumn: "span 4",
-            backgroundColor: `${colors.primary[400]}`,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <MapComponent initialPosition={[36.3504, 144.3845]} zoomLevel={2} />
-        </Box>
+          <Box
+            sx={{
+              gridColumn: "span 4",
+              backgroundColor: `${colors.primary[400]}`,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <MapComponent initialPosition={[36.3504, 144.3845]} zoomLevel={2} />
+          </Box>
 
-        <Box
-          sx={{
-            gridColumn: "span 6",
-            backgroundColor: `${colors.primary[400]}`,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Typography>News</Typography>
-        </Box>
+          <Box
+            sx={{
+              gridColumn: "span 6",
+              backgroundColor: `${colors.primary[400]}`,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Typography>News</Typography>
+          </Box>
 
-        <Box
-          sx={{
-            gridColumn: "span 6",
-            backgroundColor: `${colors.primary[400]}`,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Typography>Community</Typography>
+          <Box
+            sx={{
+              gridColumn: "span 6",
+              backgroundColor: `${colors.primary[400]}`,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Typography>Community</Typography>
+          </Box>
         </Box>
       </Box>
+
+      {/* GRID & CHARTS */}
     </Box>
   );
 };
