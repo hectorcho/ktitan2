@@ -1,6 +1,6 @@
 // src/pages/DashboardPage.tsx
 
-import { Box, Button, IconButton, Typography, useTheme, Grid } from "@mui/material";
+import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
 import { tokens } from "../theme";
 import KeywordBox from "../components/KeywordBox";
 import Header from "../components/Header";
@@ -8,7 +8,6 @@ import MapComponent from "../components/MapComponent";
 import LineChart from "../components/LineChart";
 import { useNavigate } from "react-router-dom";
 import NewsComponent from "../components/NewsComponent";
-import CommunityComponent from "../components/CommunityComponent";
 
 const DashboardPage: React.FC = () => {
   const theme = useTheme();
@@ -21,7 +20,7 @@ const DashboardPage: React.FC = () => {
 
   return (
     <Box
-      sx={{ m: "20px", display: "flex", flexDirection: "column", overflowY: 'hidden', flexGrow: 1 }}
+      sx={{ m: "20px", display: "flex", flexDirection: "column", flexGrow: 1, overflowY: 'hidden' }}
     >
       {/* HEADER */}
       <Box
@@ -138,33 +137,75 @@ const DashboardPage: React.FC = () => {
         </Box>
       </Box>
 
-      {/* STUFF */}
-      <Grid container spacing={1} sx={{flexGrow: 1, overflowY: 'hidden'}}>
-        <Grid size={7} sx={{height: '50%'}}>
-          <LineChart
+      <Box sx={{ flexGrow: 1 }}>
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: "repeat(12, 1fr)",
+            gridTemplateRows: "1fr 1fr",
+            height: '100%',
+            gap: "20px",
+          }}
+        >
+          {/* ROW 1 */}
+          <Box
+            sx={{
+              gridColumn: "span 7",
+              backgroundColor: `${colors.primary[400]}`,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <LineChart
               url="https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/gpr_daily.csv"
               isDashboard={true}
             />
-        </Grid>
+          </Box>
 
-        <Grid size={5} sx={{height: '50%'}}>
-          <MapComponent initialPosition={[37.5665, 126.9780]} zoomLevel={1} />
-        </Grid>
+          <Box
+            sx={{
+              gridColumn: "span 5",
+              backgroundColor: `${colors.primary[400]}`,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <MapComponent initialPosition={[37.5665, 126.9780]} zoomLevel={1} />
+          </Box>
 
-        <Grid size={6} sx={{backgroundColor: colors.primary[400], height: '50%', overflowY: 'auto'}}>
-          
-          <NewsComponent />
-        </Grid>
+          {/* ROW 2 */}
+          <Box
+            sx={{
+              gridColumn: "span 6",
+              backgroundColor: `${colors.primary[400]}`,
+              display: "flex",
+              overflowY: 'hidden',
+              flexDirection: 'column'
+            }}
+          >
+            <Box sx={{height: '100%', overflowY: 'auto'}}>
+              <NewsComponent />
+            </Box>
+            
+          </Box>
 
-        <Grid size={6} sx={{backgroundColor: colors.primary[400], height: '50%', overflowY: 'auto'}}>
-
-          <CommunityComponent onCardClick={function (url: string): void {
-            throw new Error("Function not implemented.");
-          } } />
-          
-        </Grid>
-
-      </Grid>
+          <Box
+            sx={{
+              gridColumn: "span 6",
+              backgroundColor: `${colors.primary[400]}`,
+              display: "flex",
+              overflowY: 'hidden',
+              flexDirection: 'column'
+            }}
+          >
+            <Box sx={{height: '100%', overflowY: 'auto'}}>
+              <NewsComponent />
+            </Box>
+          </Box>
+        </Box>
+      </Box>
 
       {/* GRID & CHARTS */}
     </Box>

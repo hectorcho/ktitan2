@@ -11,6 +11,8 @@ import RiskPage from './pages/RiskPage';
 import ReportPage from './pages/ReportPage';
 import DashboardPage from './pages/DashboardPage';
 import KeywordFilterPage from './pages/KeywordFilterPage';
+import CommunityFeedPage from './pages/CommunityFeedPage';
+import CalendarPage from './pages/CalendarPage';
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -33,6 +35,8 @@ function App() {
               <Route path='/riskdata' element={<RiskPage />} />
               <Route path='/report' element={<ReportPage />} />
               <Route path='/kwfilters' element={<KeywordFilterPage />} />
+              <Route path='/communityfeed' element={<CommunityFeedPage />} />
+              <Route path='/calendar' element={<CalendarPage />} />
             </Routes>
             
 

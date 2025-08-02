@@ -33,7 +33,7 @@ const MapDialog: React.FC<MapDialogProps> = ({
   const colors = tokens(theme.palette.mode);
   return (
     <Dialog open={open} onClose={onClose} fullScreen>
-      <AppBar sx={{ position: 'relative' }}>
+      <AppBar sx={{ position: 'relative', backgroundColor: colors.primary[400] }}>
         <Toolbar sx={{justifyContent: 'space-between'}}>
           <IconButton
             onClick={onClose}

@@ -1,35 +1,28 @@
+// src/components/NewsComponent.tsx
+
 import React, { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Box, Typography, useTheme, List, ListItem } from "@mui/material";
 import { tokens } from "../theme";
 
-interface CommunityCardProps {
+interface NewsCardProps {
   title: string;
   summary: string;
   source: string;
-  date: string;
-  fake_probability: number,
-  resolved: boolean;
-  countermeasure_url: string;
-  isSelected: boolean;
+  time: string;
 }
 
-const CommunityCard: React.FC<CommunityCardProps> = ({
+const NewsCard: React.FC<NewsCardProps> = ({
   title,
   summary,
   source,
-  date,
-  fake_probability,
-  resolved,
-  countermeasure_url,
-  isSelected
+  time,
 }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const bgColor = isSelected ? colors.primary[700] : colors.primary[400];
   return (
-    <Box sx={{ backgroundColor: bgColor }}>
+    <Box sx={{ backgroundColor: colors.primary[400] }}>
       <Typography variant="h5" sx={{ fontWeight: "bold" }}>
         {title}
       </Typography>
@@ -47,7 +40,7 @@ const CommunityCard: React.FC<CommunityCardProps> = ({
         {summary}
       </Typography>
 
-      <Typography>{`${source}, ${date}, ${fake_probability}%, ${resolved}`}</Typography>
+      <Typography>{`${source}, ${time}`}</Typography>
     </Box>
   );
 };
@@ -89,25 +82,10 @@ const useFetchData = <T extends any[]>(url: string): FetchResult<T> => {
   return { data, isLoading, error };
 };
 
-interface CommunityComponentProps {
-  onCardClick: (url: string) => void;
-}
-
-const CommunityComponent: React.FC<CommunityComponentProps> = ({onCardClick}) => {
+const NewsComponent: React.FC = () => {
   const newsUrl =
-    "https://raw.githubusercontent.com/hectorcho/ktitan-public/b9eba8782611f033d75f2b671f6dd9e81e4afaa4/fake_cm.json";
-  const { data, isLoading, error } = useFetchData<CommunityCardProps[]>(newsUrl);
-  const [isActive, setIsActive] = useState<number | null>(null);
-
-  const handleCardClick = (url: string, index: number) => {
-    if (isActive === index) {
-      setIsActive(null);
-    } else {
-      setIsActive(index);
-    }
-    
-    onCardClick(url);
-  }
+    "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/chosun_politics.json";
+  const { data, isLoading, error } = useFetchData<NewsCardProps[]>(newsUrl);
 
   return (
     
@@ -115,17 +93,13 @@ const CommunityComponent: React.FC<CommunityComponentProps> = ({onCardClick}) =>
       {!isLoading &&
         !error &&
         data &&
-        data.map((row: CommunityCardProps, index: number) => (
-          <ListItem key={index} onClick={() => handleCardClick(row.countermeasure_url, index)}>
-            <CommunityCard
+        data.map((row: NewsCardProps) => (
+          <ListItem>
+            <NewsCard
               title={row.title}
               summary={row.summary}
               source={row.source}
-              date={row.date}
-              fake_probability={row.fake_probability}
-              resolved={row.resolved}
-              countermeasure_url={row.countermeasure_url}
-              isSelected={index === isActive}
+              time={row.time}
             />
           </ListItem>
         ))}
@@ -135,4 +109,4 @@ const CommunityComponent: React.FC<CommunityComponentProps> = ({onCardClick}) =>
   );
 };
 
-export default CommunityComponent;
+export default NewsComponent;

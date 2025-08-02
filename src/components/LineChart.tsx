@@ -49,7 +49,7 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard }) => {
         //     value: +d.GPRD,
         //   } as DataRow;
         // }) as DataRow[];
-        const parsedData = csvParse(data, d => d);
+        const parsedData = csvParse(data, (d) => d);
 
         // setChartData(parsedData);
         setDataCols(parsedData.columns);
@@ -69,7 +69,7 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard }) => {
 
     // Get name of first column to set it to x-axis
     const xName = dataCols[0];
-    const xData = dataRows.map(row => row[xName]);
+    const xData = dataRows.map((row) => row[xName]);
 
     // Create a trace for subsequent columns
     const yNames = dataCols.slice(1);
@@ -77,26 +77,25 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard }) => {
     const lineColors = [
       colors.greenAccent[500],
       colors.redAccent[200],
-      colors.blueAccent[300]
+      colors.blueAccent[300],
     ];
 
     const generatedTraces = yNames.map((yName, idx) => {
       const trace: Data = {
         x: xData,
-        y: dataRows.map(row => +row[yName]),
-        type: 'scatter',
-        mode: 'lines',
+        y: dataRows.map((row) => +row[yName]),
+        type: "scatter",
+        mode: "lines",
         name: yName,
         line: {
-          color: lineColors[idx]
-        }
+          color: lineColors[idx],
+        },
       };
       return trace;
     });
     const reversedTraces = [...generatedTraces].reverse();
     return reversedTraces;
   }, [dataRows, dataCols]);
-
 
   // const trace1: Data = {
   //   x: chartData.map((row) => row.date),
@@ -113,16 +112,17 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard }) => {
     b: 40,
     t: 40,
     r: 40,
-    l: 40
+    l: 40,
   };
 
   const layout: Partial<Layout> = {
     autosize: true,
     margin: dashboard ? marginLayout : undefined,
+    showlegend: dashboard ? false : true,
     legend: {
       font: {
-        color: colors.grey[100]
-      }
+        color: colors.grey[100],
+      },
     },
     title: {
       text: "GPR Index",
@@ -173,10 +173,12 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard }) => {
           },
         ],
       },
-      rangeslider: dashboard ? {visible: false} : {
-        visible: true,
-        thickness: 0.07,
-      },
+      rangeslider: dashboard
+        ? { visible: false }
+        : {
+            visible: true,
+            thickness: 0.07,
+          },
     },
     yaxis: {
       title: {
@@ -189,8 +191,7 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard }) => {
       tickfont: {
         color: colors.grey[100],
       },
-      visible: dashboard ? false : true
-      
+      visible: dashboard ? false : true,
     },
 
     hovermode: "closest",

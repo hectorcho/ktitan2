@@ -57,5 +57,21 @@ export const countries: Country[] = [
         code: 'tw',
         position: [25.105497, 121.597366],
         info: ''
+    },
+    {
+        id: 7,
+        name: 'United Kingdom of Great Britain and Northern Ireland',
+        capital: 'London',
+        code: 'gb',
+        position: [51.507446, -0.1277653],
+        info: ''
+    },
+    {
+        id: 8,
+        name: 'France',
+        capital: 'Paris',
+        code: 'fr',
+        position: [48.8534951, 2.3483915],
+        info: ''
     }
 ]

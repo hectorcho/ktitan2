@@ -9,6 +9,8 @@ body,
 .content {
   height: 100vh;
   width: 100vw;
+  max-height: 100vh;
+  max-width: 100vw;
   font-family: "Source Sans Pro", sans-serif;
 }
 

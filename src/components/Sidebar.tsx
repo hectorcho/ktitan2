@@ -56,7 +56,7 @@ const Item: React.FC<SidebarItemProps> = ({
 const Sidebar: React.FC = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
+  const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
   const [selected, setSelected] = useState<string>("Dashboard");
 
   return (
@@ -81,10 +81,10 @@ const Sidebar: React.FC = () => {
           color: "#6870fa !important",
         },
         flex: 1,
-        display: 'flex'
+        display: 'flex',
       }}
     >
-      <ProSidebar collapsed={isCollapsed}>
+      <ProSidebar collapsed={isCollapsed} width="200px">
         <Menu>
           {/* Logo and Menu Icon */}
           <MenuItem
@@ -140,7 +140,7 @@ const Sidebar: React.FC = () => {
             </Box>
           )}
 
-          <Box paddingLeft={isCollapsed ? undefined: '10%'}>
+          <Box paddingLeft={isCollapsed ? undefined: '0%'}>
             <Item
               title="Dashboard"
               to="/"
