@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import { Box, Typography, useTheme, List, ListItem, Grid } from "@mui/material";
 import { tokens } from "../theme";
 
@@ -60,9 +60,17 @@ const CommunityCard: React.FC<CommunityCardProps> = ({
           <Typography>{`${source}, ${date}, ${fake_probability}%, ${resolved}`}</Typography>
         </Grid>
 
-        <Grid size={4} sx={{padding: '10px'}}>
-            <Typography>{`Fake: ${fake_probability}%`}</Typography>
-            <Typography>{`Resolved: ${resolved}`}</Typography>
+        <Grid size={4} sx={{padding: '10px', display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly'}}>
+          <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+            <Typography>{`Fake`}</Typography>
+            <Typography>{`${fake_probability}%`}</Typography>
+          </Box>
+          <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+            <Typography>{`Resolved`}</Typography>
+            {resolved ? (<CheckCircleOutlinedIcon />) : (<CancelOutlinedIcon />)}
+            
+          </Box>
+
         </Grid>
       </Grid>
     </Box>

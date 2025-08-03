@@ -22,7 +22,7 @@ const NewsFeedPage: React.FC = () => {
         overflowY: 'hidden',
       }}
     >
-      <Header title="Community Feed" subtitle="Community Feed" />
+      <Header title="News Feed" subtitle="Daily News" />
       
         <Grid container spacing={2} sx={{flexGrow: 1, overflowY: 'hidden'}}>
           <Grid size={6} sx={{height: '100%', overflowY: 'auto'}}>
