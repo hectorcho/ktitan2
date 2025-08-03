@@ -10,19 +10,32 @@ interface NewsCardProps {
   title: string;
   summary: string;
   source: string;
-  time: string;
+  date: string;
+  url: string;
+  reportUrl: string;
+  isSelected: boolean;
+  isDashboard: boolean;
 }
 
 const NewsCard: React.FC<NewsCardProps> = ({
   title,
   summary,
   source,
-  time,
+  date,
+  isSelected,
+  isDashboard
 }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const bgColor = () => {
+    if (isDashboard) {
+      return colors.primary[400];
+    } else {
+      return isSelected ? colors.primary[700] : colors.primary[400];
+    }
+  }
   return (
-    <Box sx={{ backgroundColor: colors.primary[400] }}>
+    <Box sx={{ backgroundColor: bgColor }}>
       <Typography variant="h5" sx={{ fontWeight: "bold" }}>
         {title}
       </Typography>
@@ -40,7 +53,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
         {summary}
       </Typography>
 
-      <Typography>{`${source}, ${time}`}</Typography>
+      <Typography>{`${source}, ${date}`}</Typography>
     </Box>
   );
 };
@@ -82,10 +95,27 @@ const useFetchData = <T extends any[]>(url: string): FetchResult<T> => {
   return { data, isLoading, error };
 };
 
-const NewsComponent: React.FC = () => {
+interface NewsComponentProps {
+  onCardClick: (url: string | null) => void;
+  isDashboard: boolean;
+}
+
+const NewsComponent: React.FC<NewsComponentProps> = ({onCardClick, isDashboard}) => {
   const newsUrl =
-    "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/chosun_politics.json";
+    "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/news_2025-08-03.json";
   const { data, isLoading, error } = useFetchData<NewsCardProps[]>(newsUrl);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  const handleCardClick = (url: string, index: number) => {
+    if (activeIndex === index) {
+      setActiveIndex(null);
+      onCardClick(null);
+    } else {
+      setActiveIndex(index);
+      onCardClick(url);
+    }
+  };
+
 
   return (
     
@@ -93,13 +123,17 @@ const NewsComponent: React.FC = () => {
       {!isLoading &&
         !error &&
         data &&
-        data.map((row: NewsCardProps) => (
-          <ListItem>
+        data.map((row: NewsCardProps, index: number) => (
+          <ListItem key={index} onClick={() => handleCardClick(row.reportUrl, index)}>
             <NewsCard
               title={row.title}
               summary={row.summary}
               source={row.source}
-              time={row.time}
+              date={row.date}
+              url={row.url}
+              reportUrl={row.reportUrl}
+              isSelected={activeIndex === index}
+              isDashboard={isDashboard}
             />
           </ListItem>
         ))}

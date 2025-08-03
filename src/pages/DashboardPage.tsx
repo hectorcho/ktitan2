@@ -1,6 +1,13 @@
 // src/pages/DashboardPage.tsx
 
-import { Box, Button, IconButton, Typography, useTheme, Grid } from "@mui/material";
+import {
+  Box,
+  Button,
+  IconButton,
+  Typography,
+  useTheme,
+  Grid,
+} from "@mui/material";
 import { tokens } from "../theme";
 import KeywordBox from "../components/KeywordBox";
 import Header from "../components/Header";
@@ -16,12 +23,18 @@ const DashboardPage: React.FC = () => {
   const navigate = useNavigate();
 
   const handleBoxClick = (path: string) => {
-    navigate(path)
+    navigate(path);
   };
 
   return (
     <Box
-      sx={{ m: "20px", display: "flex", flexDirection: "column", overflowY: 'hidden', flexGrow: 1 }}
+      sx={{
+        m: "20px",
+        display: "flex",
+        flexDirection: "column",
+        overflowY: "hidden",
+        flexGrow: 1,
+      }}
     >
       {/* HEADER */}
       <Box
@@ -32,15 +45,15 @@ const DashboardPage: React.FC = () => {
           mb: "20px",
         }}
       >
-        <Header title="K-Titan" subtitle="조용현님 환영합니다" />
+        <Header title="AI 대시보드" subtitle="조용현님 환영합니다" />
 
         {/* KEYWORD BOXES */}
         <Box
           sx={{
-            width: "50%",
+            width: "70%",
             height: "100%",
             display: "grid",
-            gridTemplateColumns: "repeat(12, 1fr)",
+            gridTemplateColumns: "repeat(16, 1fr)",
             gridAutoRows: "50px",
             gridAutoColumns: "auto",
             gap: "10px",
@@ -48,6 +61,16 @@ const DashboardPage: React.FC = () => {
         >
           <Box
             sx={{
+              gridColumn: "span 4",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Typography variant="h3">이슈 및 관심 키워드</Typography>
+          </Box>
+          <Box
+            sx={{
               gridColumn: "span 3",
               backgroundColor: `${colors.primary[400]}`,
               display: "flex",
@@ -91,6 +114,16 @@ const DashboardPage: React.FC = () => {
             <KeywordBox title="한국" subtitle="News" />
           </Box>
 
+          <Box
+            sx={{
+              gridColumn: "span 4",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Typography variant="h3">군 관심 키워드</Typography>
+          </Box>
           <Box
             sx={{
               gridColumn: "span 3",
@@ -139,31 +172,42 @@ const DashboardPage: React.FC = () => {
       </Box>
 
       {/* STUFF */}
-      <Grid container spacing={1} sx={{flexGrow: 1, overflowY: 'hidden'}}>
-        <Grid size={7} sx={{height: '50%'}}>
+      <Grid container spacing={1} sx={{ flexGrow: 1, overflowY: "hidden" }}>
+        <Grid size={7} sx={{ height: "50%" }}>
           <LineChart
-              url="https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/gpr_daily.csv"
-              isDashboard={true}
-            />
+            url="https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/pmesiid_2025-08-03.csv"
+            isDashboard={true}
+          />
         </Grid>
 
-        <Grid size={5} sx={{height: '50%'}}>
-          <MapComponent initialPosition={[37.5665, 126.9780]} zoomLevel={1} />
+        <Grid size={5} sx={{ height: "50%" }}>
+          <MapComponent initialPosition={[37.5665, 126.978]} zoomLevel={1} />
         </Grid>
 
-        <Grid size={6} sx={{backgroundColor: colors.primary[400], height: '50%', overflowY: 'auto'}}>
-          
-          <NewsComponent />
+        <Grid
+          size={6}
+          sx={{
+            backgroundColor: colors.primary[400],
+            height: "50%",
+            overflowY: "auto",
+          }}
+        >
+          <NewsComponent isDashboard={true} onCardClick={(_url) => {}}/>
         </Grid>
 
-        <Grid size={6} sx={{backgroundColor: colors.primary[400], height: '50%', overflowY: 'auto'}}>
-
-          <CommunityComponent onCardClick={function (url: string): void {
-            throw new Error("Function not implemented.");
-          } } />
-          
+        <Grid
+          size={6}
+          sx={{
+            backgroundColor: colors.primary[400],
+            height: "50%",
+            overflowY: "auto",
+          }}
+        >
+          <CommunityComponent
+            isDashboard={true}
+            onCardClick={(_url) => {}}
+          />
         </Grid>
-
       </Grid>
 
       {/* GRID & CHARTS */}

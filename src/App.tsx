@@ -13,6 +13,7 @@ import DashboardPage from './pages/DashboardPage';
 import KeywordFilterPage from './pages/KeywordFilterPage';
 import CommunityFeedPage from './pages/CommunityFeedPage';
 import CalendarPage from './pages/CalendarPage';
+import NewsFeedPage from './pages/NewsFeedPage';
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -36,6 +37,7 @@ function App() {
               <Route path='/report' element={<ReportPage />} />
               <Route path='/kwfilters' element={<KeywordFilterPage />} />
               <Route path='/communityfeed' element={<CommunityFeedPage />} />
+              <Route path='/newsfeed' element={<NewsFeedPage />} />
               <Route path='/calendar' element={<CalendarPage />} />
             </Routes>
             

@@ -93,8 +93,8 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard }) => {
       };
       return trace;
     });
-    const reversedTraces = [...generatedTraces].reverse();
-    return reversedTraces;
+    // const reversedTraces = [...generatedTraces].reverse();
+    return generatedTraces;
   }, [dataRows, dataCols]);
 
   // const trace1: Data = {
@@ -118,14 +118,15 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard }) => {
   const layout: Partial<Layout> = {
     autosize: true,
     margin: dashboard ? marginLayout : undefined,
-    showlegend: dashboard ? false : true,
+    // showlegend: dashboard ? false : true,
+    showlegend: true,
     legend: {
       font: {
         color: colors.grey[100],
       },
     },
     title: {
-      text: "GPR Index",
+      text: "PMESII + D",
       font: {
         color: colors.grey[100],
       },
@@ -178,11 +179,12 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard }) => {
         : {
             visible: true,
             thickness: 0.07,
-          },
+      },
+      
     },
     yaxis: {
       title: {
-        text: "GPR Index",
+        text: "Score",
         font: {
           color: colors.grey[100],
         },

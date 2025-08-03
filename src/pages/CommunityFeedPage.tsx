@@ -24,7 +24,7 @@ const CommunityFeedPage: React.FC = () => {
       
         <Grid container spacing={2} sx={{flexGrow: 1, overflowY: 'hidden'}}>
           <Grid size={6} sx={{height: '100%', overflowY: 'auto'}}>
-            <CommunityComponent onCardClick={setSelectedIndex}/>
+            <CommunityComponent onCardClick={setSelectedIndex} isDashboard={false}/>
             
           </Grid>
 

@@ -33,7 +33,7 @@ const useFetchData = (url: string | null): FetchResult<string> => {
           throw new Error(`HTTP Error! status: ${response.status}`);
         }
         const result = await response.text();
-        console.log(result);
+        console.log('Resolution Fetched');
         setData(result);
       } catch (err: any) {
         const errMessage = `ERROR: Failed to fetch final report. ${err.errMessage}`;
@@ -63,7 +63,7 @@ const ResolutionComponent: React.FC<Props> = ({cmUrl}) => {
       style={{
         padding: "15px",
       }}
-      className="report-markdown-container"
+      className="resolution-markdown-container"
     >
       {!isLoading && !error && data &&
         <ReactMarkdown remarkPlugins={[remarkGfm]}>{data}</ReactMarkdown>
