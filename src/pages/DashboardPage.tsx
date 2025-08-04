@@ -16,6 +16,8 @@ import LineChart from "../components/LineChart";
 import { useNavigate } from "react-router-dom";
 import NewsComponent from "../components/NewsComponent";
 import CommunityComponent from "../components/CommunityComponent";
+import ArrowDropUpOutlinedIcon from '@mui/icons-material/ArrowDropUpOutlined';
+import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
 
 const DashboardPage: React.FC = () => {
   const theme = useTheme();
@@ -45,7 +47,29 @@ const DashboardPage: React.FC = () => {
           mb: "20px",
         }}
       >
-        <Header title="AI 대시보드" subtitle="조용현님 환영합니다" />
+        <Header title="정세판단 대시보드" subtitle="" />
+        <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+          <Typography variant="h3">PMESII + D</Typography>
+          {/* <Box sx={{display: 'flex', flexDirection: 'row'}}>
+            <Typography variant="h3">74.3 {`(`}</Typography>
+            <ArrowDropUpOutlinedIcon sx={{color: '#008000', fontSize: '35px'}}/>
+            <Typography variant="h3">3 {`)`}</Typography>
+          </Box> */}
+          <Typography variant="h3">
+            74.3 (
+            <ArrowDropUpOutlinedIcon
+              sx={{
+                color: '#008000',
+                fontSize: 'inherit',
+                verticalAlign: 'middle',
+                
+              }}
+            />
+            3)
+          </Typography>
+          
+          
+        </Box>
 
         {/* KEYWORD BOXES */}
         <Box

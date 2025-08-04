@@ -68,7 +68,7 @@ const CommunityCard: React.FC<CommunityCardProps> = ({
             {summary}
           </Typography>
 
-          <Typography>{`${source}, ${date}, ${fake_probability}%, ${resolved}`}</Typography>
+          <Typography>{`${source}, ${date}`}</Typography>
         </Grid>
 
         <Grid

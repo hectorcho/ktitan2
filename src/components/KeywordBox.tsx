@@ -2,6 +2,8 @@
 
 import { Box, Typography, useTheme } from "@mui/material";
 import { tokens } from "../theme";
+import ArrowDropUpOutlinedIcon from '@mui/icons-material/ArrowDropUpOutlined';
+
 
 interface KeywordBoxProps {
   title: string;
@@ -22,6 +24,21 @@ const KeywordBox: React.FC<KeywordBoxProps> = ({ title, subtitle }) => {
         >
           {title}
         </Typography>
+
+        <Typography variant="h4" fontWeight="bold">
+            (
+            <ArrowDropUpOutlinedIcon
+              sx={{
+                color: '#008000',
+                fontSize: 'inherit',
+                fontWeight: 'inherit',
+                verticalAlign: 'middle',
+              }}
+            />
+            3)
+          </Typography>
+
+
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: '2px'}}>
         <Typography

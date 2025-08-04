@@ -129,11 +129,10 @@ const Sidebar: React.FC = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  조용현
+                  정보작전참모부
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                  미래혁신연구센터<br />
-                  차세대C5시스템과<br />
+                  중령 김정훈<br />
                 </Typography>
                 
               </Box>
