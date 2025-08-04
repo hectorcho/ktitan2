@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
-import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
-import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
-import { Box, Typography, useTheme, List, ListItem, Grid } from "@mui/material";
+import CheckCircleOutlinedIcon from "@mui/icons-material/CheckCircleOutlined";
+import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
+import {
+  Box,
+  Typography,
+  useTheme,
+  List,
+  ListItem,
+  Grid,
+  Link,
+} from "@mui/material";
 import { tokens } from "../theme";
 
 interface CommunityCardProps {
@@ -10,6 +18,7 @@ interface CommunityCardProps {
   source: string;
   date: string;
   fake_probability: number;
+  url: string;
   resolved: boolean;
   countermeasure_url: string;
   isSelected: boolean;
@@ -22,6 +31,7 @@ const CommunityCard: React.FC<CommunityCardProps> = ({
   source,
   date,
   fake_probability,
+  url,
   resolved,
   countermeasure_url,
   isSelected,
@@ -41,12 +51,13 @@ const CommunityCard: React.FC<CommunityCardProps> = ({
       <Grid container>
         <Grid size={8}>
           <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-            {title}
+            <Link href={url} target="_blank" rel="noopener" color="inherit">
+              {title}
+            </Link>
           </Typography>
 
           <Typography
             sx={{
-            
               overflow: "hidden",
               textOverflow: "ellipsis",
               display: "-webkit-box",
@@ -60,17 +71,35 @@ const CommunityCard: React.FC<CommunityCardProps> = ({
           <Typography>{`${source}, ${date}, ${fake_probability}%, ${resolved}`}</Typography>
         </Grid>
 
-        <Grid size={4} sx={{padding: '10px', display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly'}}>
-          <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        <Grid
+          size={4}
+          sx={{
+            padding: "10px",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
             <Typography>{`Fake`}</Typography>
             <Typography>{`${fake_probability}%`}</Typography>
           </Box>
-          <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-            <Typography>{`Resolved`}</Typography>
-            {resolved ? (<CheckCircleOutlinedIcon />) : (<CancelOutlinedIcon />)}
-            
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <Typography>{resolved ? 'Resolved' : 'Unresolved'}</Typography>
+            {resolved ? <CheckCircleOutlinedIcon sx={{color: '#008000'}} /> : <CancelOutlinedIcon sx={{color: '#FF0000'}}/>}
           </Box>
-
         </Grid>
       </Grid>
     </Box>
@@ -157,6 +186,7 @@ const CommunityComponent: React.FC<CommunityComponentProps> = ({
               date={row.date}
               fake_probability={row.fake_probability}
               resolved={row.resolved}
+              url={row.url}
               countermeasure_url={row.countermeasure_url}
               isSelected={index === isActive}
               isDashboard={isDashboard}

@@ -175,7 +175,7 @@ const DashboardPage: React.FC = () => {
       <Grid container spacing={1} sx={{ flexGrow: 1, overflowY: "hidden" }}>
         <Grid size={7} sx={{ height: "50%" }}>
           <LineChart
-            url="https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/pmesiid_2025-08-03.csv"
+            url="https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/pmesiid_2025-08-04.csv"
             isDashboard={true}
           />
         </Grid>

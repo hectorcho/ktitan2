@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { Box, Typography, useTheme, List, ListItem } from "@mui/material";
+import { Box, Typography, useTheme, List, ListItem, Link } from "@mui/material";
 import { tokens } from "../theme";
 
 interface NewsCardProps {
@@ -22,6 +22,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
   summary,
   source,
   date,
+  url,
   isSelected,
   isDashboard
 }) => {
@@ -37,12 +38,13 @@ const NewsCard: React.FC<NewsCardProps> = ({
   return (
     <Box sx={{ backgroundColor: bgColor }}>
       <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-        {title}
+        <Link href={url} target="_blank" rel="noopener" color="inherit">
+          {title}
+        </Link>
       </Typography>
 
       <Typography
         sx={{
-          width: "70%",
           overflow: "hidden",
           textOverflow: "ellipsis",
           display: "-webkit-box",
@@ -82,7 +84,7 @@ const useFetchData = <T extends any[]>(url: string): FetchResult<T> => {
         const result = await response.json();
         setData(result);
       } catch (err: any) {
-        const errMessage = `ERROR: Failed to fetch final report. ${err.errMessage}`;
+        const errMessage = `ERROR: Failed to fetch final report. ${err.message}`;
         setError(errMessage);
       } finally {
         setIsLoading(false);

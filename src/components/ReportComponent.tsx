@@ -18,7 +18,7 @@ const useLoadFinalReport = () => {
 
       try {
         const response = await fetch(
-          `https://raw.githubusercontent.com/jglsnu12/k_titan/main/final_analysis_report.txt`
+          `https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/daily_report_2025-08-04.md`
         );
 
         if (!response.ok) {

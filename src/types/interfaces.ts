@@ -5,4 +5,10 @@ export interface Country {
   code: string;
   position: [number, number];
   info: string;
-}
+};
+
+export interface FetchResult<T> {
+  data: T | null;
+  isLoading: boolean;
+  error: string | null;
+};

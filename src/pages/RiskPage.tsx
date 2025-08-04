@@ -66,7 +66,7 @@ const RiskPage: React.FC = () => {
         }}
       >
         <LineChart
-          url="https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/pmesiid_2025-08-03.csv"
+          url="https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/pmesiid_2025-08-04.csv"
           isDashboard={false}
         />
         
