@@ -1,5 +1,5 @@
 // src/App.tsx
-import { useState } from 'react';
+// import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { ColorModeContext, useMode } from './theme';
@@ -17,7 +17,7 @@ import NewsFeedPage from './pages/NewsFeedPage';
 
 function App() {
   const [theme, colorMode] = useMode();
-  const [isSidebar, setIsSidebar] = useState<boolean>(true);
+  // const [isSidebar, setIsSidebar] = useState<boolean>(true);
 
 
   return (

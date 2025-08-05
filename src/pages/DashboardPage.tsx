@@ -2,8 +2,6 @@
 
 import {
   Box,
-  Button,
-  IconButton,
   Typography,
   useTheme,
   Grid,
@@ -13,20 +11,20 @@ import KeywordBox from "../components/KeywordBox";
 import Header from "../components/Header";
 import MapComponent from "../components/MapComponent";
 import LineChart from "../components/LineChart";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import NewsComponent from "../components/NewsComponent";
 import CommunityComponent from "../components/CommunityComponent";
 import ArrowDropUpOutlinedIcon from '@mui/icons-material/ArrowDropUpOutlined';
-import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
+// import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
 
 const DashboardPage: React.FC = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const handleBoxClick = (path: string) => {
-    navigate(path);
-  };
+  // const handleBoxClick = (path: string) => {
+  //   navigate(path);
+  // };
 
   return (
     <Box
@@ -47,7 +45,7 @@ const DashboardPage: React.FC = () => {
           mb: "20px",
         }}
       >
-        <Header title="정세판단 대시보드" subtitle="" />
+        <Header title={"국내외 정세판단/\n허위정보 탐지"} subtitle="" />
         <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <Typography variant="h3">PMESII + D</Typography>
           {/* <Box sx={{display: 'flex', flexDirection: 'row'}}>
@@ -102,7 +100,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <KeywordBox title="한국" subtitle="News" />
+            <KeywordBox title="한미 동맹" subtitle="" quantity={2} />
           </Box>
           <Box
             sx={{
@@ -113,7 +111,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <KeywordBox title="한국" subtitle="News" />
+            <KeywordBox title="북한 핵 발사" subtitle="" quantity={1} />
           </Box>
           <Box
             sx={{
@@ -124,7 +122,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <KeywordBox title="한국" subtitle="News" />
+            <KeywordBox title="전쟁 발발" subtitle="" quantity={1} />
           </Box>
           <Box
             sx={{
@@ -135,7 +133,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <KeywordBox title="한국" subtitle="News" />
+            <KeywordBox title="중국" subtitle="" quantity={-1} />
           </Box>
 
           <Box
@@ -157,7 +155,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <KeywordBox title="한국" subtitle="Community" />
+            <KeywordBox title="주한미군 철수" subtitle="" quantity={2}/>
           </Box>
           <Box
             sx={{
@@ -168,7 +166,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <KeywordBox title="한국" subtitle="Community" />
+            <KeywordBox title="동원 응소" subtitle="" quantity={1}/>
           </Box>
           <Box
             sx={{
@@ -179,7 +177,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <KeywordBox title="한국" subtitle="Community" />
+            <KeywordBox title="북한" subtitle="" quantity={1}/>
           </Box>
           <Box
             sx={{
@@ -190,7 +188,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <KeywordBox title="한국" subtitle="Community" />
+            <KeywordBox title="반전시위" subtitle="" quantity={-1}/>
           </Box>
         </Box>
       </Box>

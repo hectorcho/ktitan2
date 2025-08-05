@@ -3,7 +3,6 @@ import { Menu, Sidebar as ProSidebar, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { tokens } from "../theme";
-import type { SvgIconProps } from "@mui/material";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
@@ -124,7 +123,7 @@ const Sidebar: React.FC = () => {
               </Box>
               <Box textAlign="center">
                 <Typography
-                  variant="h2"
+                  variant="h3"
                   color={colors.grey[100]}
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
@@ -141,7 +140,7 @@ const Sidebar: React.FC = () => {
 
           <Box paddingLeft={isCollapsed ? undefined: '0%'}>
             <Item
-              title="Dashboard"
+              title="대시보드"
               to="/"
               icon={<HomeOutlinedIcon />}
               selected={selected}
@@ -149,7 +148,7 @@ const Sidebar: React.FC = () => {
             />
 
             <Item
-              title="Summary Report"
+              title="일일 정세 보고"
               to="/report"
               icon={<SummarizeOutlinedIcon />}
               selected={selected}
@@ -157,7 +156,7 @@ const Sidebar: React.FC = () => {
             />
 
             <Item
-              title="News Feed"
+              title="주요 뉴스"
               to="/newsfeed"
               icon={<NewspaperOutlinedIcon />}
               selected={selected}
@@ -165,7 +164,7 @@ const Sidebar: React.FC = () => {
             />
 
             <Item
-              title="Community Feed"
+              title="가짜 뉴스 판별"
               to="/communityfeed"
               icon={<FeedOutlinedIcon />}
               selected={selected}
@@ -173,7 +172,7 @@ const Sidebar: React.FC = () => {
             />
 
             <Item
-              title="Map"
+              title="국제 정세 지도"
               to="/map"
               icon={<MapOutlinedIcon />}
               selected={selected}
@@ -181,15 +180,7 @@ const Sidebar: React.FC = () => {
             />
 
             <Item
-              title="Keyword Filters"
-              to="/kwfilters"
-              icon={<FilterAltOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            <Item
-              title="Risk Data"
+              title="정세 판단 지표"
               to="/riskdata"
               icon={<TimelineOutlinedIcon />}
               selected={selected}
@@ -197,7 +188,16 @@ const Sidebar: React.FC = () => {
             />
 
             <Item
-              title="Calendar"
+              title="키워드 설정"
+              to="/kwfilters"
+              icon={<FilterAltOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+
+            <Item
+              title="캘린더"
               to="/calendar"
               icon={<CalendarTodayOutlinedIcon />}
               selected={selected}

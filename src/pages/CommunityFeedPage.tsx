@@ -1,14 +1,14 @@
 // src/pages/CommunityFeedPage.tsx
 
-import { Box, useTheme, Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import Header from "../components/Header";
-import { tokens } from "../theme";
+// import { tokens } from "../theme";
 import CommunityComponent from "../components/CommunityComponent";
 import { useState } from "react";
 import ResolutionComponent from "../components/ResolutionComponent";
 const CommunityFeedPage: React.FC = () => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
+  // const theme = useTheme();
+  // const colors = tokens(theme.palette.mode);
   const [selectedIndex, setSelectedIndex] = useState<string | null>(null);
 
   return (
@@ -30,7 +30,7 @@ const CommunityFeedPage: React.FC = () => {
 
           <Grid size={6} sx={{height: '100%', overflowY: 'auto'}}>
             <ResolutionComponent 
-              cmUrl={selectedIndex}
+              resolutionUrl={selectedIndex}
              />
           </Grid>
 

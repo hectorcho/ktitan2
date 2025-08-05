@@ -44,7 +44,7 @@ const useLoadFinalReport = () => {
 };
 
 const ReportComponent: React.FC = () => {
-  const { content, isLoading, loadingError } = useLoadFinalReport();
+  const { content } = useLoadFinalReport();
   return (
     <div
       style={{

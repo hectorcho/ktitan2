@@ -1,30 +1,19 @@
 // src/components/NewsComponent.tsx
 
 import React, { useState, useEffect } from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import { Box, Typography, useTheme, List, ListItem, Link } from "@mui/material";
 import { tokens } from "../theme";
-
-interface NewsCardProps {
-  title: string;
-  summary: string;
-  source: string;
-  date: string;
-  url: string;
-  reportUrl: string;
-  isSelected: boolean;
-  isDashboard: boolean;
-}
+import type {
+  NewsData,
+  NewsCardProps,
+  NewsComponentProps,
+} from "../types/interfaces";
+import { newsDataListUrl } from "../data/urls";
 
 const NewsCard: React.FC<NewsCardProps> = ({
-  title,
-  summary,
-  source,
-  date,
-  url,
+  data,
   isSelected,
-  isDashboard
+  isDashboard,
 }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -34,12 +23,12 @@ const NewsCard: React.FC<NewsCardProps> = ({
     } else {
       return isSelected ? colors.primary[700] : colors.primary[400];
     }
-  }
+  };
   return (
     <Box sx={{ backgroundColor: bgColor }}>
       <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-        <Link href={url} target="_blank" rel="noopener" color="inherit">
-          {title}
+        <Link href={data.url} target="_blank" rel="noopener" color="inherit">
+          {data.title}
         </Link>
       </Typography>
 
@@ -52,10 +41,10 @@ const NewsCard: React.FC<NewsCardProps> = ({
           WebkitBoxOrient: "vertical",
         }}
       >
-        {summary}
+        {data.summary}
       </Typography>
 
-      <Typography>{`${source}, ${date}`}</Typography>
+      <Typography>{`${data.source}, ${data.date}`}</Typography>
     </Box>
   );
 };
@@ -97,15 +86,11 @@ const useFetchData = <T extends any[]>(url: string): FetchResult<T> => {
   return { data, isLoading, error };
 };
 
-interface NewsComponentProps {
-  onCardClick: (url: string | null) => void;
-  isDashboard: boolean;
-}
-
-const NewsComponent: React.FC<NewsComponentProps> = ({onCardClick, isDashboard}) => {
-  const newsUrl =
-    "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/news_2025-08-03.json";
-  const { data, isLoading, error } = useFetchData<NewsCardProps[]>(newsUrl);
+const NewsComponent: React.FC<NewsComponentProps> = ({
+  onCardClick,
+  isDashboard,
+}) => {
+  const { data, isLoading, error } = useFetchData<NewsData[]>(newsDataListUrl);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const handleCardClick = (url: string, index: number) => {
@@ -118,30 +103,24 @@ const NewsComponent: React.FC<NewsComponentProps> = ({onCardClick, isDashboard})
     }
   };
 
-
   return (
-    
-      <List>
+    <List>
       {!isLoading &&
         !error &&
         data &&
-        data.map((row: NewsCardProps, index: number) => (
-          <ListItem key={index} onClick={() => handleCardClick(row.reportUrl, index)}>
+        data.map((row: NewsData, index: number) => (
+          <ListItem
+            key={index}
+            onClick={() => handleCardClick(row.reportUrl, index)}
+          >
             <NewsCard
-              title={row.title}
-              summary={row.summary}
-              source={row.source}
-              date={row.date}
-              url={row.url}
-              reportUrl={row.reportUrl}
+              data={row}
               isSelected={activeIndex === index}
               isDashboard={isDashboard}
             />
           </ListItem>
         ))}
     </List>
-    
-    
   );
 };
 

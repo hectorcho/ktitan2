@@ -25,6 +25,7 @@
     "@mui/x-data-grid": "^8.9.2",
     "@reduxjs/toolkit": "^2.8.2",
     "d3-dsv": "^3.0.1",
+    "firebase": "^12.0.0",
     "leaflet": "^1.9.4",
     "plotly.js": "^3.0.3",
     "plotly.js-dist": "^3.0.3",

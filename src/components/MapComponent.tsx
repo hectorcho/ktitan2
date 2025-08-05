@@ -26,8 +26,8 @@ const MapDialog: React.FC<MapDialogProps> = ({
   onClose,
   selectedCountry,
   dialogContent,
-  dialogIsLoading,
-  dialogLoadingError,
+  // dialogIsLoading,
+  // dialogLoadingError,
 }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);

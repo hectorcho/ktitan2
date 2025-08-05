@@ -1,48 +1,10 @@
 // src/pages/KeywordFilterPage.tsx
 
-import { useState } from "react";
 import { Box, useTheme } from "@mui/material";
 import Header from "../components/Header";
 import { tokens } from "../theme";
-import LineChart from "../components/LineChart";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import type { SelectChangeEvent } from "@mui/material/Select";
 import { DataGrid } from "@mui/x-data-grid";
 import type { GridColDef } from "@mui/x-data-grid";
-
-// const columns: GridColDef<(typeof rows)[number]>[] = [
-//   { field: "id", headerName: "ID", width: 90 },
-//   {
-//     field: "keyword",
-//     headerName: "Keyword",
-//     width: 150,
-//     editable: true,
-//   },
-//   {
-//     field: "lastName",
-//     headerName: "Last name",
-//     width: 150,
-//     editable: true,
-//   },
-//   {
-//     field: "age",
-//     headerName: "Age",
-//     type: "number",
-//     width: 110,
-//     editable: true,
-//   },
-//   {
-//     field: "fullName",
-//     headerName: "Full name",
-//     description: "This column has a value getter and is not sortable.",
-//     sortable: false,
-//     width: 160,
-//     valueGetter: (value, row) => `${row.firstName || ""} ${row.lastName || ""}`,
-//   },
-// ];
 
 const columns: GridColDef<(typeof rows)[number]>[] = [
   { field: "id", headerName: "ID", width: 90 },

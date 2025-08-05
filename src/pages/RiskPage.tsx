@@ -1,9 +1,9 @@
 // src/pages/RiskPage.tsx
 
 import { useState } from "react";
-import { Box, useTheme } from "@mui/material";
+import { Box } from "@mui/material";
 import Header from "../components/Header";
-import { tokens } from "../theme";
+// import { tokens } from "../theme";
 import LineChart from "../components/LineChart";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -43,8 +43,8 @@ const ChartSelect: React.FC = () => {
 
 
 const RiskPage: React.FC = () => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
+  // const theme = useTheme();
+  // const colors = tokens(theme.palette.mode);
 
   return (
     <Box sx={{ m: "20px", display: 'flex', flexDirection: 'column', flexGrow: 1 }}>

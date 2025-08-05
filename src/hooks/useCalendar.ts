@@ -1,10 +1,10 @@
 // src/hooks/useMapDialog.ts
 
 import { useState, useEffect } from "react";
-import type { FetchResult } from "../types/interfaces";
+import type { FetchResult, CalendarEvent } from "../types/interfaces";
 
-export const useFetchCalendarData = <T extends any[]>(url: string): FetchResult<T> => {
-  const [data, setData] = useState<T | null>(null);
+export const useFetchCalendarData = (url: string): FetchResult<CalendarEvent[]> => {
+  const [data, setData] = useState<CalendarEvent[] | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -18,7 +18,7 @@ export const useFetchCalendarData = <T extends any[]>(url: string): FetchResult<
         if (!response.ok) {
           throw new Error(`HTTP Error! status: ${response.status}`);
         }
-        const result = await response.json();
+        const result: CalendarEvent[] = await response.json();
         setData(result);
       } catch (err: any) {
         const errMsg = `ERROR: Failed to fetch final report. ${err.message}`
