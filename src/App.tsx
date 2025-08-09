@@ -1,19 +1,30 @@
 // src/App.tsx
-// import { useState } from 'react';
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { ColorModeContext, useMode } from './theme';
 import Sidebar from './components/Sidebar';
 import Topbar from './components/Topbar';
 
-import MapPage from './pages/MapPage';
-import RiskPage from './pages/RiskPage';
-import ReportPage from './pages/ReportPage';
-import DashboardPage from './pages/DashboardPage';
-import KeywordFilterPage from './pages/KeywordFilterPage';
-import CommunityFeedPage from './pages/CommunityFeedPage';
-import CalendarPage from './pages/CalendarPage';
-import NewsFeedPage from './pages/NewsFeedPage';
+// import MapPage from './pages/MapPage';
+// import RiskPage from './pages/RiskPage';
+// import ReportPage from './pages/ReportPage';
+// import DashboardPage from './pages/DashboardPage';
+// import KeywordFilterPage from './pages/KeywordFilterPage';
+// import CommunityFeedPage from './pages/CommunityFeedPage';
+// import CalendarPage from './pages/CalendarPage';
+// import NewsFeedPage from './pages/NewsFeedPage';
+
+
+const MapPage = React.lazy(() => import ('./pages/MapPage'));
+const RiskPage = React.lazy(() => import ('./pages/RiskPage'));
+const ReportPage = React.lazy(() => import ('./pages/ReportPage'));
+const DashboardPage = React.lazy(() => import ('./pages/DashboardPage'));
+const KeywordFilterPage = React.lazy(() => import ('./pages/KeywordFilterPage'));
+const CommunityFeedPage = React.lazy(() => import ('./pages/CommunityFeedPage'));
+const CalendarPage = React.lazy(() => import ('./pages/CalendarPage'));
+const NewsFeedPage = React.lazy(() => import ('./pages/NewsFeedPage'));
+
 
 function App() {
   const [theme, colorMode] = useMode();

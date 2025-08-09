@@ -15,6 +15,7 @@ import LineChart from "../components/LineChart";
 import NewsComponent from "../components/NewsComponent";
 import CommunityComponent from "../components/CommunityComponent";
 import ArrowDropUpOutlinedIcon from '@mui/icons-material/ArrowDropUpOutlined';
+import { getKstDate } from "../hooks/useMapDialog";
 // import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
 
 const DashboardPage: React.FC = () => {
@@ -25,6 +26,8 @@ const DashboardPage: React.FC = () => {
   // const handleBoxClick = (path: string) => {
   //   navigate(path);
   // };
+
+  const currDate = getKstDate();
 
   return (
     <Box
@@ -47,7 +50,8 @@ const DashboardPage: React.FC = () => {
       >
         <Header title={"국내외 정세판단/\n허위정보 탐지"} subtitle="" />
         <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-          <Typography variant="h3">PMESII + D</Typography>
+          <Typography variant="h3">{currDate}</Typography>
+          <Typography variant="h3">PMESII</Typography>
           {/* <Box sx={{display: 'flex', flexDirection: 'row'}}>
             <Typography variant="h3">74.3 {`(`}</Typography>
             <ArrowDropUpOutlinedIcon sx={{color: '#008000', fontSize: '35px'}}/>
@@ -57,11 +61,10 @@ const DashboardPage: React.FC = () => {
             74.3 (
             <ArrowDropUpOutlinedIcon
               sx={{
-                color: '#008000',
-                fontSize: 'inherit',
+                color: "#FF0000",
                 verticalAlign: 'middle',
-                
               }}
+              fontSize="large"
             />
             3)
           </Typography>
@@ -89,7 +92,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <Typography variant="h3">이슈 및 관심 키워드</Typography>
+            <Typography variant="h3">국내 관심 키워드</Typography>
           </Box>
           <Box
             sx={{
@@ -197,8 +200,9 @@ const DashboardPage: React.FC = () => {
       <Grid container spacing={1} sx={{ flexGrow: 1, overflowY: "hidden" }}>
         <Grid size={7} sx={{ height: "50%" }}>
           <LineChart
-            url="https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/pmesiid_2025-08-04.csv"
+            url="https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/pmesii_20241215_20250731.csv"
             isDashboard={true}
+            title="PMESII"
           />
         </Grid>
 
@@ -214,6 +218,9 @@ const DashboardPage: React.FC = () => {
             overflowY: "auto",
           }}
         >
+          <Typography variant="h4" fontWeight={"bold"} padding={'5px'}>
+            국내 주요 정세
+          </Typography>
           <NewsComponent isDashboard={true} onCardClick={(_url) => {}}/>
         </Grid>
 
@@ -225,6 +232,9 @@ const DashboardPage: React.FC = () => {
             overflowY: "auto",
           }}
         >
+          <Typography variant="h4" fontWeight={"bold"} padding={'5px'}>
+            허위정보 탐지
+          </Typography>
           <CommunityComponent
             isDashboard={true}
             onCardClick={(_url) => {}}

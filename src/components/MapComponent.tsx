@@ -2,11 +2,18 @@
 import React from "react";
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import { useMapDialog } from "../hooks/useMapDialog";
-import { Dialog, Typography, AppBar, Toolbar, IconButton, useTheme } from "@mui/material";
-import CloseIcon from '@mui/icons-material/Close';
+import {
+  Dialog,
+  Typography,
+  AppBar,
+  Toolbar,
+  IconButton,
+  useTheme,
+} from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 import { tokens } from "../theme";
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 // Import utilities and data that MapComponent needs
 import { createFlagIcon } from "../utils/leafletUtils";
 import { countries } from "../data/countryList";
@@ -33,26 +40,23 @@ const MapDialog: React.FC<MapDialogProps> = ({
   const colors = tokens(theme.palette.mode);
   return (
     <Dialog open={open} onClose={onClose} fullScreen>
-      <AppBar sx={{ position: 'relative', backgroundColor: colors.primary[400] }}>
-        <Toolbar sx={{justifyContent: 'space-between'}}>
-          <IconButton
-            onClick={onClose}
-          >
+      <AppBar
+        sx={{ position: "relative", backgroundColor: colors.primary[400] }}
+      >
+        <Toolbar sx={{ justifyContent: "space-between" }}>
+          <IconButton onClick={onClose}>
             <CloseIcon />
           </IconButton>
-          <Typography
-            variant="h2"
-            color={colors.grey[100]}
-            fontWeight="bold"
-          >
+          <Typography variant="h2" color={colors.grey[100]} fontWeight="bold">
             {selectedCountry?.name}
           </Typography>
-
         </Toolbar>
       </AppBar>
-      <ReactMarkdown remarkPlugins={[remarkGfm]}>
-        {dialogContent}
-      </ReactMarkdown>
+      <div style={{padding: '30px'}}>
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          {dialogContent}
+        </ReactMarkdown>
+      </div>
     </Dialog>
   );
 };
@@ -105,7 +109,7 @@ const MapComponent: React.FC<MapComponentProps> = ({
           <Marker
             key={country.id}
             position={country.position}
-            icon={createFlagIcon(country.code)}
+            icon={createFlagIcon(country.code, country.riskScore)}
             eventHandlers={{
               click: () => {
                 handleOpenDialog(country); // Call the prop function on click

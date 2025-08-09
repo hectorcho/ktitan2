@@ -20,7 +20,7 @@ const CommunityFeedPage: React.FC = () => {
         overflowY: 'hidden',
       }}
     >
-      <Header title="Community Feed" subtitle="Community Feed" />
+      <Header title="허위정보 탐지" subtitle="" />
       
         <Grid container spacing={2} sx={{flexGrow: 1, overflowY: 'hidden'}}>
           <Grid size={6} sx={{height: '100%', overflowY: 'auto'}}>

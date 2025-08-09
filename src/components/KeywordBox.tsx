@@ -25,9 +25,9 @@ const renderIcon = ({quantity}: RenderIconProps): JSX.Element => {
   };
 
   if (quantity > 0) {
-    return <ArrowUpwardOutlinedIcon {...iconProps} sx={{...iconProps.sx, color: "#008000"}}/>
+    return <ArrowUpwardOutlinedIcon {...iconProps} sx={{...iconProps.sx, color: "#FF0000"}}/>
   } else if (quantity < 0) {
-    return <ArrowDownwardOutlinedIcon {...iconProps} sx={{...iconProps.sx, color: "#FF0000"}}/>
+    return <ArrowDownwardOutlinedIcon {...iconProps} sx={{...iconProps.sx, color: "#008000"}}/>
   } else {
     return <HorizontalRuleOutlinedIcon {...iconProps} sx={{...iconProps.sx}} />
   }
@@ -41,9 +41,10 @@ const KeywordBox: React.FC<KeywordBoxProps> = ({
 }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const fQuantity = (quantity > 0) ? `+${quantity}` : String(quantity);
 
   return (
-    <Box sx={{ width: "100%", m: "0 10px" }}>
+    <Box sx={{ width: "100%", m: "0 5px" }}>
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <Typography
           variant="h4"
@@ -54,8 +55,7 @@ const KeywordBox: React.FC<KeywordBoxProps> = ({
         </Typography>
 
         <Typography variant="h5" fontWeight="bold">
-          {renderIcon({quantity})} {quantity}
-          
+          {renderIcon({quantity})} {fQuantity}
         </Typography>
       </Box>
       <Box sx={{ display: "flex", justifyContent: "space-between", mt: "2px" }}>

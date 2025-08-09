@@ -10,6 +10,7 @@ import { tokens } from "../theme";
 interface LineChartProps {
   url: string;
   isDashboard: boolean;
+  title: string;
 }
 
 // interface DataRow {
@@ -18,7 +19,7 @@ interface LineChartProps {
 //   [key: string]: any;
 // }
 
-const LineChart: React.FC<LineChartProps> = ({ url, isDashboard }) => {
+const LineChart: React.FC<LineChartProps> = ({ url, isDashboard, title }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   // const [chartData, setChartData] = useState<DataRow[]>([]);
@@ -104,6 +105,7 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard }) => {
   };
 
   const layout: Partial<Layout> = {
+    dragmode: 'zoom',
     autosize: true,
     margin: isDashboard ? marginLayout : undefined,
     // showlegend: dashboard ? false : true,
@@ -114,12 +116,13 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard }) => {
       },
     },
     title: {
-      text: "PMESII + D",
+      text: title,
       font: {
         color: colors.grey[100],
       },
     },
     xaxis: {
+      fixedrange: false,
       title: {
         text: isDashboard ? "" : "Date",
         font: {
@@ -171,6 +174,7 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard }) => {
       
     },
     yaxis: {
+      fixedrange: false,
       title: {
         text: "Score",
         font: {
@@ -192,7 +196,8 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard }) => {
   const config: Partial<Config> = {
     doubleClick: "reset",
     responsive: true,
-    displayModeBar: false,
+    scrollZoom: true,
+    displayModeBar: true,
   };
 
   if (loading) {

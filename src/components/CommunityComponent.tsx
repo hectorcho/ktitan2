@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import CheckCircleOutlinedIcon from "@mui/icons-material/CheckCircleOutlined";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
+// import CommentOutlinedIcon from '@mui/icons-material/CommentOutlined';
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import CommentIcon from "@mui/icons-material/Comment";
 import {
   Box,
   Typography,
@@ -9,6 +13,7 @@ import {
   ListItem,
   Grid,
   Link,
+  Divider,
 } from "@mui/material";
 import { tokens } from "../theme";
 import type {
@@ -28,13 +33,21 @@ const CommunityCard: React.FC<CommunityCardProps> = ({
   const colors = tokens(theme.palette.mode);
   const bgColor = () => {
     if (isDashboard) {
-      return colors.primary[400];
+      if (data.fakeProbability >= 50) {
+        return colors.redAccent[900];
+      } else {
+        return colors.primary[400];
+      }
     } else {
-      return isSelected ? colors.primary[700] : colors.primary[400];
+      if (data.fakeProbability >= 50) {
+        return isSelected ? colors.redAccent[800] : colors.redAccent[900];
+      } else {
+        return isSelected ? colors.primary[800] : colors.primary[400];
+      }
     }
   };
   return (
-    <Box sx={{ backgroundColor: bgColor }}>
+    <Box sx={{ backgroundColor: bgColor, width: "100%" }}>
       <Grid container>
         <Grid size={8}>
           <Typography variant="h5" sx={{ fontWeight: "bold" }}>
@@ -44,23 +57,54 @@ const CommunityCard: React.FC<CommunityCardProps> = ({
               rel="noopener"
               color="inherit"
             >
-              {data.title}
+              [{data.source}] {data.title}
             </Link>
           </Typography>
 
           <Typography
+            
             sx={{
               overflow: "hidden",
               textOverflow: "ellipsis",
               display: "-webkit-box",
-              WebkitLineClamp: 2, // <-- Number of lines to show
+              WebkitLineClamp: 1, // <-- Number of lines to show
               WebkitBoxOrient: "vertical",
             }}
           >
             {data.summary}
           </Typography>
+          <Box sx={{ padding: "3px"}}>
+            <Grid container>
+              <Grid size={4}>
+                <Typography variant="h5">
+                  <VisibilityIcon
+                    sx={{ fontWeight: "bold", verticalAlign: "middle" }}
+                  />{" "}
+                  {data.views}
+                </Typography>
+              </Grid>
 
-          <Typography>{`${data.source}, ${data.categories}, ${data.date}`}</Typography>
+              <Grid size={4}>
+                <Typography variant="h5" sx={{}}>
+                  <FavoriteIcon
+                    sx={{ fontWeight: "bold", verticalAlign: "middle", color: "#FF0000" }}
+                  />{" "}
+                  {data.likes}
+                </Typography>
+              </Grid>
+
+              <Grid size={4}>
+                <Typography variant="h5">
+                  <CommentIcon
+                    sx={{ fontWeight: "bold", verticalAlign: "middle" }}
+                  />{" "}
+                  {data.comments}
+                </Typography>
+              </Grid>
+            </Grid>
+          </Box>
+
+          <Typography>{`${data.categories}, ${data.date}`}</Typography>
         </Grid>
 
         <Grid
@@ -79,8 +123,8 @@ const CommunityCard: React.FC<CommunityCardProps> = ({
               alignItems: "center",
             }}
           >
-            <Typography>{`Fake`}</Typography>
-            <Typography>{`${data.fakeProbability}%`}</Typography>
+            <Typography variant="h4" fontWeight={"bold"}>{`Fake`}</Typography>
+            <Typography variant="h4" fontWeight={"bold"}>{`${data.fakeProbability}%`}</Typography>
           </Box>
           <Box
             sx={{
@@ -89,7 +133,7 @@ const CommunityCard: React.FC<CommunityCardProps> = ({
               alignItems: "center",
             }}
           >
-            <Typography>{data.resolved ? "Resolved" : "Unresolved"}</Typography>
+            <Typography variant="h4">{data.resolved ? "Resolved" : "Unresolved"}</Typography>
             {data.resolved ? (
               <CheckCircleOutlinedIcon sx={{ color: "#008000" }} />
             ) : (
@@ -121,23 +165,26 @@ const CommunityComponent: React.FC<CommunityComponentProps> = ({
   };
 
   return (
-    <List>
-      {!isLoading &&
-        !error &&
-        data &&
-        data.map((row: CommunityData, index: number) => (
-          <ListItem
-            key={index}
-            onClick={() => handleCardClick(row.resolutionUrl, index)}
-          >
-            <CommunityCard
-              data={row}
-              isSelected={index === isActive}
-              isDashboard={isDashboard}
-            />
-          </ListItem>
-        ))}
-    </List>
+    <>
+      <List sx={{padding: '0px'}}>
+        {!isLoading &&
+          !error &&
+          data &&
+          data.map((row: CommunityData, index: number) => (
+            <ListItem
+              key={index}
+              onClick={() => handleCardClick(row.resolutionUrl, index)}
+            >
+              <CommunityCard      
+                data={row}
+                isSelected={index === isActive}
+                isDashboard={isDashboard}
+              />
+            </ListItem>
+          ))}
+        <Divider />
+      </List>
+    </>
   );
 };
 

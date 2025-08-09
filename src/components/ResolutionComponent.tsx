@@ -2,6 +2,7 @@
 
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from 'rehype-raw';
 import { useFetchResolutionData } from "../hooks/useResolution";
 import type { ResolutionComponentProps } from "../types/interfaces";
 
@@ -18,7 +19,7 @@ const ResolutionComponent: React.FC<ResolutionComponentProps> = ({
       className="resolution-markdown-container"
     >
       {!isLoading && !error && data && (
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>{data}</ReactMarkdown>
+        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>{data}</ReactMarkdown>
       )}
     </div>
   );

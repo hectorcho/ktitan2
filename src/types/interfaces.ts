@@ -5,6 +5,7 @@ export interface Country {
   code: string;
   position: [number, number];
   info: string;
+  riskScore: number;
 };
 
 export interface FetchResult<T> {

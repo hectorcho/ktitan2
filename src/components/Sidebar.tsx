@@ -130,8 +130,8 @@ const Sidebar: React.FC = () => {
                 >
                   정보작전참모부
                 </Typography>
-                <Typography variant="h5" color={colors.greenAccent[500]}>
-                  중령 김정훈<br />
+                <Typography variant="h5" color={colors.primary[700]}>
+                  
                 </Typography>
                 
               </Box>
@@ -156,7 +156,7 @@ const Sidebar: React.FC = () => {
             />
 
             <Item
-              title="주요 뉴스"
+              title="국내 주요 정세"
               to="/newsfeed"
               icon={<NewspaperOutlinedIcon />}
               selected={selected}
@@ -164,7 +164,7 @@ const Sidebar: React.FC = () => {
             />
 
             <Item
-              title="가짜 뉴스 판별"
+              title="허위정보 탐지"
               to="/communityfeed"
               icon={<FeedOutlinedIcon />}
               selected={selected}

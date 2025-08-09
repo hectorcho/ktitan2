@@ -21,7 +21,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
     if (isDashboard) {
       return colors.primary[400];
     } else {
-      return isSelected ? colors.primary[700] : colors.primary[400];
+      return isSelected ? colors.primary[800] : colors.primary[400];
     }
   };
   return (
@@ -104,7 +104,7 @@ const NewsComponent: React.FC<NewsComponentProps> = ({
   };
 
   return (
-    <List>
+    <List sx={{padding: '0px'}}>
       {!isLoading &&
         !error &&
         data &&

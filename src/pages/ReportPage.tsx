@@ -10,7 +10,7 @@ const ReportPage: React.FC = () => {
 
   return (
     <Box sx={{ m: "20px", display: "flex", flexDirection: "column", overflowY: 'hidden' }}>
-      <Header title="Summary Report" subtitle="Summary of today outlook" />
+      <Header title="일일 정세 보고" subtitle="" />
 
       <Box sx={{ flexGrow: 1, backgroundColor: colors.primary[400], overflowY: 'auto', }}>
         <ReportComponent />

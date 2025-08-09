@@ -10,7 +10,7 @@ const CalendarPage: React.FC = () => {
 
   return (
     <Box sx={{ m: "20px", display: "flex", flexDirection: "column" }}>
-      <Header title="Calendar" subtitle="Important Dates" />
+      <Header title="캘린더" subtitle="중요 이벤트 캘린더" />
 
       <Box sx={{ flexGrow: 1, backgroundColor: colors.primary[400] }}>
         <CalendarComponent />

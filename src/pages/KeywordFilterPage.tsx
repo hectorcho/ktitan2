@@ -35,7 +35,7 @@ const KeywordFilterPage: React.FC = () => {
     <Box
       sx={{ m: "20px", display: "flex", flexDirection: "column", flexGrow: 1 }}
     >
-      <Header title="Keyword Filters" subtitle="Filter content by keywords" />
+      <Header title="키워드 설정" subtitle="" />
 
       <Box sx={{ flexGrow: 1 }}>
         <DataGrid
