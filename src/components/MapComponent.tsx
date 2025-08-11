@@ -52,7 +52,7 @@ const MapDialog: React.FC<MapDialogProps> = ({
           </Typography>
         </Toolbar>
       </AppBar>
-      <div style={{padding: '30px'}}>
+      <div style={{ padding: "30px" }}>
         <ReactMarkdown remarkPlugins={[remarkGfm]}>
           {dialogContent}
         </ReactMarkdown>
@@ -65,12 +65,14 @@ const MapDialog: React.FC<MapDialogProps> = ({
 interface MapComponentProps {
   initialPosition: [number, number];
   zoomLevel: number;
+  isDashboard: boolean;
   // onMarkerClick: (country: Country) => void; // A function passed from parent to handle marker clicks
 }
 
 const MapComponent: React.FC<MapComponentProps> = ({
   initialPosition,
   zoomLevel,
+  isDashboard,
 }) => {
   const {
     openDialog,
@@ -81,6 +83,49 @@ const MapComponent: React.FC<MapComponentProps> = ({
     handleOpenDialog,
     handleCloseDialog,
   } = useMapDialog();
+
+  const majorCountryCodes = [
+    "kr",
+    "us",
+    "jp",
+    "tw",
+    "ru",
+    "fr",
+    "gb",
+    "kp",
+    "cn",
+  ];
+  let markersToRender = [];
+
+  if (isDashboard) {
+    markersToRender = countries
+      .filter((country) => majorCountryCodes.includes(country.code))
+      .map((country) => (
+        <Marker
+          key={country.id}
+          position={country.positionDashboard ? country.positionDashboard : country.position}
+          icon={createFlagIcon(country.code, country.riskScore, isDashboard)}
+          eventHandlers={{
+            click: () => {
+              handleOpenDialog(country); // Call the prop function on click
+            },
+          }}
+        ></Marker>
+      ));
+  } else {
+    markersToRender = countries.map((country) => (
+      <Marker
+        key={country.id}
+        position={country.position}
+        icon={createFlagIcon(country.code, country.riskScore, isDashboard)}
+        eventHandlers={{
+          click: () => {
+            handleOpenDialog(country); // Call the prop function on click
+          },
+        }}
+      ></Marker>
+    ));
+  }
 
   return (
     <div className="map-container" style={{ height: "100%", width: "100%" }}>
@@ -96,7 +141,11 @@ const MapComponent: React.FC<MapComponentProps> = ({
       <MapContainer
         center={initialPosition}
         zoom={zoomLevel}
-        scrollWheelZoom={true}
+        scrollWheelZoom={isDashboard ? false : true}
+        dragging={isDashboard ? false : true}
+        doubleClickZoom={isDashboard ? false : true}
+        touchZoom={isDashboard ? false : true}
+        zoomControl={isDashboard ? false : true}
         style={{ height: "100%", width: "100%" }}
       >
         <TileLayer
@@ -104,19 +153,9 @@ const MapComponent: React.FC<MapComponentProps> = ({
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        {/* Loop through cities data to add markers */}
-        {countries.map((country) => (
-          <Marker
-            key={country.id}
-            position={country.position}
-            icon={createFlagIcon(country.code, country.riskScore)}
-            eventHandlers={{
-              click: () => {
-                handleOpenDialog(country); // Call the prop function on click
-              },
-            }}
-          ></Marker>
-        ))}
+        
+        
+        {markersToRender}
       </MapContainer>
     </div>
   );

@@ -4,6 +4,7 @@ export interface Country {
   capital: string;
   code: string;
   position: [number, number];
+  positionDashboard?: [number, number];
   info: string;
   riskScore: number;
 };

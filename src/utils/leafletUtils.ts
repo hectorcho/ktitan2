@@ -10,13 +10,14 @@ L.Icon.Default.mergeOptions({
   shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
 });
 
-export const createFlagIcon = (countryCode: string, riskScore: number) => {
+export const createFlagIcon = (countryCode: string, riskScore: number, isDashboard: boolean) => {
     const svgUrl = `https://flagicons.lipis.dev/flags/4x3/${countryCode.toLowerCase()}.svg`;
     const modifiedSvgUrl = useModifiedSvg(svgUrl, riskScore);
+    // const iconSize = 
     if (!modifiedSvgUrl || riskScore < 0) {
       return new L.Icon({
         iconUrl: `https://flagicons.lipis.dev/flags/4x3/${countryCode.toLowerCase()}.svg`,
-        iconSize: [28,21]
+        iconSize: [40,30]
       });
     }
 
@@ -24,6 +25,6 @@ export const createFlagIcon = (countryCode: string, riskScore: number) => {
       // iconUrl: `https://flagicons.lipis.dev/flags/4x3/${countryCode.toLowerCase()}.svg`,
       // iconUrl: `https://flagcdn.com/${countryCode.toLowerCase()}.svg`,
       iconUrl: modifiedSvgUrl,
-      iconSize: [40,30]
+      iconSize: isDashboard ? [52,39] : [52,39]
     });
 };

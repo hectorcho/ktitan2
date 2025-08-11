@@ -27,6 +27,8 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard, title }) => {
   const [dataCols, setDataCols] = useState<string[]>([]);
   const [dataRows, setDataRows] = useState<any[]>([]);
 
+  const [eventRows, setEventRows] = useState<any[]>([]);
+
   // const [loading, setLoading] = useState<boolean>(false);
   // const [error, setError] = useState<string | null>(null);
   // const [dashboard, setDashboard] = useState<boolean>(isDashboard);
@@ -46,18 +48,24 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard, title }) => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-
         const data = await response.text();
         console.log("fetched from github");
         const parsedData = csvParse(data, (d) => d);
 
+        setDataRows(parsedData.filter((d) => d.type === "timeseries"));
+        setEventRows(parsedData.filter((d) => d.type === "event"));
+
         setDataCols(parsedData.columns);
-        setDataRows(parsedData);
+        // setDataRows(parsedData);
       } catch (err) {
         const errMessage = `ERROR: Failed to fetch final report. ${err}`;
         setError(errMessage);
       } finally {
         setLoading(false);
+      }
+
+      if (title === "PMESII") {
+        const response = await fetch("");
       }
     };
     fetchData();
@@ -66,13 +74,16 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard, title }) => {
   const traces = useMemo(() => {
     if (dataRows.length === 0 || dataCols.length < 2) return [];
 
-    console.log('useMemo');
+    console.log("useMemo");
     // Get name of first column to set it to x-axis
-    const xName = dataCols[0];
+    const relevantCols = dataCols.filter(
+      (col) => col !== "type" && col !== "event_description"
+    );
+    const xName = relevantCols[0];
     const xData = dataRows.map((row) => row[xName]);
 
     // Create a trace for subsequent columns
-    const yNames = dataCols.slice(1);
+    const yNames = relevantCols.slice(1);
 
     const lineColors = [
       colors.greenAccent[500],
@@ -82,10 +93,10 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard, title }) => {
 
     const generatedTraces = yNames.map((yName, idx) => {
       const trace: Data = {
-        x: xData,
+        x: dataRows.map((row) => row[xName]),
         y: dataRows.map((row) => +row[yName]),
         type: "scatter",
-        mode: "lines",
+        mode: title === 'PMESII' ? "lines+markers" : "lines",
         name: yName,
         line: {
           color: lineColors[idx],
@@ -93,7 +104,23 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard, title }) => {
       };
       return trace;
     });
-    // const reversedTraces = [...generatedTraces].reverse();
+
+    if (eventRows.length > 0) {
+      const eventTrace: Data = {
+        x: eventRows.map(row => row[xName]),
+        y: eventRows.map(() => 0),
+        type: "scatter",
+        mode: "markers",
+        name: "Events",
+        text: eventRows.map((row) => (
+          `${row[xName]} ${row['event_description']}`
+        )),
+        hoverinfo: 'text'
+        
+      };
+      generatedTraces.push(eventTrace);
+    }
+
     return generatedTraces;
   }, [dataRows, dataCols]);
 
@@ -105,7 +132,7 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard, title }) => {
   };
 
   const layout: Partial<Layout> = {
-    dragmode: 'zoom',
+    dragmode: "zoom",
     autosize: true,
     margin: isDashboard ? marginLayout : undefined,
     // showlegend: dashboard ? false : true,
@@ -170,8 +197,7 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard, title }) => {
         : {
             visible: true,
             thickness: 0.07,
-      },
-      
+          },
     },
     yaxis: {
       fixedrange: false,
@@ -205,13 +231,12 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard, title }) => {
       <Box>
         <CircularProgress />
       </Box>
-    )
+    );
   }
 
   if (error) {
-    return <Box></Box>
+    return <Box></Box>;
   }
-
 
   return (
     <Plot

@@ -199,15 +199,20 @@ const DashboardPage: React.FC = () => {
       {/* STUFF */}
       <Grid container spacing={1} sx={{ flexGrow: 1, overflowY: "hidden" }}>
         <Grid size={7} sx={{ height: "50%" }}>
-          <LineChart
+          {/* <LineChart
             url="https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/pmesii_20241215_20250731.csv"
+            isDashboard={true}
+            title="PMESII"
+          /> */}
+          <LineChart
+            url="https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/pmesii_20241215_20250731_new_format.csv"
             isDashboard={true}
             title="PMESII"
           />
         </Grid>
 
         <Grid size={5} sx={{ height: "50%" }}>
-          <MapComponent initialPosition={[37.5665, 126.978]} zoomLevel={1} />
+          <MapComponent initialPosition={[37.5665, 126.978]} zoomLevel={1} isDashboard={true}/>
         </Grid>
 
         <Grid

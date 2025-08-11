@@ -8,8 +8,9 @@ export const countries: Country[] = [
         capital: 'Seoul',
         code: 'kr',
         position: [37.5665, 126.9780],
+        positionDashboard: [36.350, 134.384],
         info: 'https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/daily_report_2025-08-07.md',
-        riskScore: 80
+        riskScore: 75
     },
     {
         id: 1,
@@ -17,8 +18,9 @@ export const countries: Country[] = [
         capital: 'Washington DC',
         code: 'us',
         position: [40.7128, 285.994],
+        positionDashboard: [40.359, 264.121],
         info: '',
-        riskScore: 80
+        riskScore: 55
     },
     {
         id: 2,
@@ -26,8 +28,9 @@ export const countries: Country[] = [
         capital: 'Tokyo',
         code: 'jp',
         position: [35.6764, 139.6500],
+        positionDashboard: [34.066, 173.000],
         info: '',
-        riskScore: 80
+        riskScore: 35
     },
     {
         id: 3,
@@ -35,8 +38,9 @@ export const countries: Country[] = [
         capital: 'Pyongyang',
         code: 'kp',
         position: [39.0392, 125.7625],
+        positionDashboard: [53.345, 130.813],
         info: '',
-        riskScore: 80
+        riskScore: 85
     },
     {
         id: 4,
@@ -44,8 +48,9 @@ export const countries: Country[] = [
         capital: 'Beijing',
         code: 'cn',
         position: [39.9042, 116.4074],
+        positionDashboard: [35.055, 95.865],
         info: '',
-        riskScore: 80
+        riskScore: 60
     },
     {
         id: 5,
@@ -53,8 +58,9 @@ export const countries: Country[] = [
         capital: 'Moscow',
         code: 'ru',
         position: [55.755833, 37.617778],
+        positionDashboard: [65.000, 93.000],
         info: '',
-        riskScore: 80
+        riskScore: 70
     },
     {
         id: 6,
@@ -62,8 +68,9 @@ export const countries: Country[] = [
         capital: 'Taipei',
         code: 'tw',
         position: [25.105497, 121.597366],
+        positionDashboard: [14.000, 126.838],
         info: '',
-        riskScore: 80
+        riskScore: 55
     },
     {
         id: 7,
@@ -71,8 +78,9 @@ export const countries: Country[] = [
         capital: 'London',
         code: 'gb',
         position: [51.507446, -0.1277653],
+        positionDashboard: [60.507446, -0.1277653],
         info: '',
-        riskScore: -1
+        riskScore: 40
     },
     {
         id: 8,
@@ -80,8 +88,9 @@ export const countries: Country[] = [
         capital: 'Paris',
         code: 'fr',
         position: [48.8534951, 2.3483915],
+        positionDashboard: [40.306, 4.131],
         info: '',
-        riskScore: -1
+        riskScore: 30
     },
     {
         id: 9,

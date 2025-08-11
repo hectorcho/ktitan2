@@ -46,7 +46,7 @@ const ChartSelect: React.FC<ChartSelectProps> = ({ onChartChange }) => {
               url: "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/gpr_daily.csv",
             })}
           >
-            Geopolitical Risk Index
+            GPR (지정학적위험도) - 세계
           </MenuItem>
           <MenuItem
             value={JSON.stringify({
@@ -54,12 +54,12 @@ const ChartSelect: React.FC<ChartSelectProps> = ({ onChartChange }) => {
               url: "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/gpr_kor_historical.csv",
             })}
           >
-            Geopolitical Risk Index - Korea Historical
+            GPR (지정학적위험도) - 대한민국
           </MenuItem>
           <MenuItem
             value={JSON.stringify({
               title: "PMESII",
-              url: "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/pmesii_20241215_20250731.csv",
+              url: "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/pmesii_20241215_20250731_new_format.csv",
             })}
           >
             PMESII
@@ -80,7 +80,7 @@ const ChartSelect: React.FC<ChartSelectProps> = ({ onChartChange }) => {
 
 const RiskPage: React.FC = () => {
   const [url, setUrl] = useState<string>(
-    "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/pmesii_20241215_20250731.csv"
+    "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/pmesii_20241215_20250731_new_format.csv"
   );
   const [title, setTitle] = useState<string>("PMESII");
 

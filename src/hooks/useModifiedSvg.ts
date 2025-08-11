@@ -42,11 +42,17 @@ const addBarToSvg = (svgString: string, riskScore: number) => {
   const color = getGradientHexColor(riskScore, 100);
   const height = Math.round(480 * (riskScore / 100.0));
   const yValue = 480 - height;
+  // const newSvgContent = `
+  // <g transform="translate(700,0)">
+  //   <rect x="0" y="0" width="200" height="480" fill="#eee"/>
+  //   <rect x="0" y="${yValue}" width="200" height="${height}" fill="${color}"/>
+  //   <text x="60" y="240" font-size="200" font-family="sans-serif" fill="black" text-anchor="middle" dominant-baseline="middle">${riskScore}</text>
+  // </g>`;
+
   const newSvgContent = `
   <g transform="translate(700,0)">
-    <rect x="0" y="0" width="200" height="480" fill="#eee"/>
-    <rect x="0" y="${yValue}" width="200" height="${height}" fill="${color}"/>
-    <text x="60" y="240" font-size="200" font-family="sans-serif" fill="black" text-anchor="middle" dominant-baseline="middle">${riskScore}</text>
+    <circle cx="100" cy="360" r="105" fill="${color}"/>
+    <text x="90" y="120" font-size="200" font-family="sans-serif" fill="black" text-anchor="middle" dominant-baseline="middle">${riskScore}</text>
   </g>`;
 
   return (
