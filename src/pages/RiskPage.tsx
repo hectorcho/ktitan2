@@ -64,14 +64,14 @@ const ChartSelect: React.FC<ChartSelectProps> = ({ onChartChange }) => {
           >
             PMESII
           </MenuItem>
-          <MenuItem
+          {/* <MenuItem
             value={JSON.stringify({
               title: "PMESII Simulated",
               url: "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/pmesiid_2025-08-04.csv"
             })}
           >
             PMESII Simulated
-          </MenuItem>
+          </MenuItem> */}
         </Select>
       </FormControl>
     </Box>
