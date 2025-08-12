@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Box, Typography, useTheme, List, ListItem, Link } from "@mui/material";
 import { tokens } from "../theme";
+import { getKstDate } from "../hooks/useMapDialog";
 import type {
   NewsData,
   NewsCardProps,
@@ -25,7 +26,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
     }
   };
   return (
-    <Box sx={{ backgroundColor: bgColor }}>
+    <Box sx={{ backgroundColor: bgColor, width: "100%", height: "100%" }}>
       <Typography variant="h5" sx={{ fontWeight: "bold" }}>
         <Link href={data.url} target="_blank" rel="noopener" color="inherit">
           {data.title}
@@ -74,6 +75,7 @@ const useFetchData = <T extends any[]>(url: string): FetchResult<T> => {
         setData(result);
       } catch (err: any) {
         const errMessage = `ERROR: Failed to fetch final report. ${err.message}`;
+        console.error(errMessage);
         setError(errMessage);
       } finally {
         setIsLoading(false);
@@ -90,7 +92,9 @@ const NewsComponent: React.FC<NewsComponentProps> = ({
   onCardClick,
   isDashboard,
 }) => {
-  const { data, isLoading, error } = useFetchData<NewsData[]>(newsDataListUrl);
+  const currDate = getKstDate();
+  const dailyNewsUrl = `${newsDataListUrl}/${currDate}/daily_news.json`
+  const { data, isLoading, error } = useFetchData<NewsData[]>(dailyNewsUrl);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const handleCardClick = (url: string, index: number) => {

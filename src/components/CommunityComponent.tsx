@@ -133,7 +133,7 @@ const CommunityCard: React.FC<CommunityCardProps> = ({
               alignItems: "center",
             }}
           >
-            <Typography variant="h4">{data.resolved ? "Resolved" : "Unresolved"}</Typography>
+            <Typography variant="h5">{data.resolved ? "조치완료" : "미조치"}</Typography>
             {data.resolved ? (
               <CheckCircleOutlinedIcon sx={{ color: "#008000" }} />
             ) : (

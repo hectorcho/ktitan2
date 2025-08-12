@@ -58,7 +58,7 @@ const DashboardPage: React.FC = () => {
             <Typography variant="h3">3 {`)`}</Typography>
           </Box> */}
           <Typography variant="h3">
-            74.3 (
+            51.7 (
             <ArrowDropUpOutlinedIcon
               sx={{
                 color: "#FF0000",
