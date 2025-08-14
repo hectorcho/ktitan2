@@ -128,10 +128,13 @@ const Sidebar: React.FC = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  정보작전참모부
+                  미래혁신연구센터
                 </Typography>
                 <Typography variant="h5" color={colors.primary[700]}>
-                  
+                  차세대C5시스템과
+                </Typography>
+                <Typography variant="h5" color={colors.primary[700]}>
+                  군사과학기술연구병 조용현
                 </Typography>
                 
               </Box>

@@ -15,9 +15,7 @@ import LineChart from "../components/LineChart";
 import NewsComponent from "../components/NewsComponent";
 import CommunityComponent from "../components/CommunityComponent";
 import RiskScoreComponent from "../components/RiskScoreComponent";
-import ArrowDropUpOutlinedIcon from '@mui/icons-material/ArrowDropUpOutlined';
 import { getKstDate } from "../hooks/useMapDialog";
-import { useRiskScore } from "../hooks/useRiskScore";
 // import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
 
 const DashboardPage: React.FC = () => {
