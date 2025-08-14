@@ -5,7 +5,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 // hook for loading final analysis report from server
-const useLoadFinalReport = () => {
+const useLoadFinalReport = (date: string) => {
   const [content, setContent] = useState<string>("Loading report...");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [loadingError, setLoadingError] = useState<string | null>(null);
@@ -16,9 +16,11 @@ const useLoadFinalReport = () => {
       setLoadingError(null);
       setContent("Fetching report...");
 
+      console.log(date);
+
       try {
         const response = await fetch(
-          `https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/daily_report_2025-08-07.md`
+          `https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/country_reports/${date}/kr_report.md`
         );
 
         if (!response.ok) {
@@ -38,13 +40,17 @@ const useLoadFinalReport = () => {
     };
 
     loadReport();
-  }, []);
+  }, [date]);
 
   return { content, isLoading, loadingError };
 };
 
-const ReportComponent: React.FC = () => {
-  const { content } = useLoadFinalReport();
+interface ReportComponentProps {
+  date: string;
+};
+
+const ReportComponent: React.FC<ReportComponentProps> = ({date}) => {
+  const { content } = useLoadFinalReport(date);
   return (
     <div
       style={{

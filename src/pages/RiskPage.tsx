@@ -58,11 +58,11 @@ const ChartSelect: React.FC<ChartSelectProps> = ({ onChartChange }) => {
           </MenuItem>
           <MenuItem
             value={JSON.stringify({
-              title: "PMESII",
+              title: "PMESII 위험지수",
               url: "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/pmesii_20241215_20250731_new_format.csv",
             })}
           >
-            PMESII
+            PMESII 위험지수
           </MenuItem>
           {/* <MenuItem
             value={JSON.stringify({
@@ -82,7 +82,7 @@ const RiskPage: React.FC = () => {
   const [url, setUrl] = useState<string>(
     "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/pmesii_20241215_20250731_new_format.csv"
   );
-  const [title, setTitle] = useState<string>("PMESII");
+  const [title, setTitle] = useState<string>("PMESII 위험지수");
 
   const handleChartChange = (newUrl: string, newTitle: string) => {
     setUrl(newUrl);

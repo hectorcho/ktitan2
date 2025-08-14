@@ -7,5 +7,11 @@ export const eventsListUrl =
 export const newsDataListUrl =
   "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/news_articles/";
 
-export const countryReportsUrl = 
+export const countryReportsUrl =
   "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/country_reports/";
+
+export const availableDatesUrl =
+  "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/country_reports/available_dates.json";
+
+export const koreaRiskScoreUrl =
+  "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/pmesii/kr.csv";

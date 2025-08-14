@@ -30,6 +30,7 @@
     "plotly.js": "^3.0.3",
     "plotly.js-dist": "^3.0.3",
     "react": "^19.1.0",
+    "react-calendar": "^6.0.0",
     "react-dom": "^19.1.0",
     "react-leaflet": "^5.0.0",
     "react-markdown": "^10.1.0",

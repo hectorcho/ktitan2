@@ -96,7 +96,7 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard, title }) => {
         x: dataRows.map((row) => row[xName]),
         y: dataRows.map((row) => +row[yName]),
         type: "scatter",
-        mode: title === 'PMESII' ? "lines+markers" : "lines",
+        mode: title === "PMESII 위험지수" ? "lines+markers" : "lines",
         name: yName,
         line: {
           color: lineColors[idx],
@@ -107,16 +107,15 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard, title }) => {
 
     if (eventRows.length > 0) {
       const eventTrace: Data = {
-        x: eventRows.map(row => row[xName]),
+        x: eventRows.map((row) => row[xName]),
         y: eventRows.map(() => 0),
         type: "scatter",
         mode: "markers",
         name: "Events",
-        text: eventRows.map((row) => (
-          `${row[xName]} ${row['event_description']}`
-        )),
-        hoverinfo: 'text'
-        
+        text: eventRows.map(
+          (row) => `${row[xName]}<br>${row["event_description"]}`
+        ),
+        hoverinfo: "text",
       };
       generatedTraces.push(eventTrace);
     }

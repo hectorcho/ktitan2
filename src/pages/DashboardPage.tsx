@@ -14,20 +14,17 @@ import LineChart from "../components/LineChart";
 // import { useNavigate } from "react-router-dom";
 import NewsComponent from "../components/NewsComponent";
 import CommunityComponent from "../components/CommunityComponent";
+import RiskScoreComponent from "../components/RiskScoreComponent";
 import ArrowDropUpOutlinedIcon from '@mui/icons-material/ArrowDropUpOutlined';
 import { getKstDate } from "../hooks/useMapDialog";
+import { useRiskScore } from "../hooks/useRiskScore";
 // import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
 
 const DashboardPage: React.FC = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  // const navigate = useNavigate();
-
-  // const handleBoxClick = (path: string) => {
-  //   navigate(path);
-  // };
-
   const currDate = getKstDate();
+  
 
   return (
     <Box
@@ -49,28 +46,7 @@ const DashboardPage: React.FC = () => {
         }}
       >
         <Header title={"국내외 정세판단/\n허위정보 탐지"} subtitle="" />
-        <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-          <Typography variant="h3">{currDate}</Typography>
-          <Typography variant="h3">PMESII</Typography>
-          {/* <Box sx={{display: 'flex', flexDirection: 'row'}}>
-            <Typography variant="h3">74.3 {`(`}</Typography>
-            <ArrowDropUpOutlinedIcon sx={{color: '#008000', fontSize: '35px'}}/>
-            <Typography variant="h3">3 {`)`}</Typography>
-          </Box> */}
-          <Typography variant="h3">
-            51.7 (
-            <ArrowDropUpOutlinedIcon
-              sx={{
-                color: "#FF0000",
-                verticalAlign: 'middle',
-              }}
-              fontSize="large"
-            />
-            3)
-          </Typography>
-          
-          
-        </Box>
+        <RiskScoreComponent />
 
         {/* KEYWORD BOXES */}
         <Box
@@ -207,7 +183,7 @@ const DashboardPage: React.FC = () => {
           <LineChart
             url="https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/pmesii_20241215_20250731_new_format.csv"
             isDashboard={true}
-            title="PMESII"
+            title="PMESII 위험지수"
           />
         </Grid>
 
