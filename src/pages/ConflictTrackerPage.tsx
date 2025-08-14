@@ -1,9 +1,9 @@
 // src/pages/CommunityFeedPage.tsx
 
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Paper } from "@mui/material";
 import Header from "../components/Header";
 // import { tokens } from "../theme";
-import CommunityComponent from "../components/CommunityComponent";
+import ConflictTrackerComponent from "../components/ConflictTrackerComponent";
 import { useState } from "react";
 import ResolutionComponent from "../components/ResolutionComponent";
 const ConflictTrackerPage: React.FC = () => {
@@ -24,8 +24,7 @@ const ConflictTrackerPage: React.FC = () => {
       
         <Grid container spacing={2} sx={{flexGrow: 1, overflowY: 'hidden'}}>
           <Grid size={6} sx={{height: '100%', overflowY: 'auto'}}>
-            <CommunityComponent onCardClick={setSelectedIndex} isDashboard={false}/>
-            
+              <ConflictTrackerComponent onCardClick={setSelectedIndex} isDashboard={false}/>
           </Grid>
 
           <Grid size={6} sx={{height: '100%', overflowY: 'auto'}}>

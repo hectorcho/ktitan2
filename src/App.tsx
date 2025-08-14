@@ -22,6 +22,7 @@ const ReportPage = React.lazy(() => import ('./pages/ReportPage'));
 const DashboardPage = React.lazy(() => import ('./pages/DashboardPage'));
 const KeywordFilterPage = React.lazy(() => import ('./pages/KeywordFilterPage'));
 const CommunityFeedPage = React.lazy(() => import ('./pages/CommunityFeedPage'));
+const ConflictTrackerPage = React.lazy(() => import ('./pages/ConflictTrackerPage'));
 const CalendarPage = React.lazy(() => import ('./pages/CalendarPage'));
 const NewsFeedPage = React.lazy(() => import ('./pages/NewsFeedPage'));
 
@@ -47,7 +48,7 @@ function App() {
               <Route path='/riskdata' element={<RiskPage />} />
               <Route path='/report' element={<ReportPage />} />
               <Route path='/kwfilters' element={<KeywordFilterPage />} />
-              <Route path='/communityfeed' element={<CommunityFeedPage />} />
+              <Route path='/conflicts' element={<ConflictTrackerPage />} />
               <Route path='/newsfeed' element={<NewsFeedPage />} />
               <Route path='/calendar' element={<CalendarPage />} />
             </Routes>

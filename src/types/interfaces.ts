@@ -49,6 +49,28 @@ export interface CommunityData {
   comments: number;
 };
 
+export type ConflictConditionStatus = "improved" | "deteriorated" | "unchanged" | "critical";
+export interface ConflictEvent {
+  id: string;
+  condition: ConflictConditionStatus;
+  title: string;
+  summary: string;
+  date: string;
+  url: string;
+  reportUrl: string;
+};
+
+export interface ConflictCardProps {
+  data: ConflictEvent;
+  selected: boolean;
+  dashboard: boolean;
+};
+
+export interface ConflictComponentProps {
+  onCardClick: (url: string | null) => void;
+  dashboard: boolean;
+}
+
 export interface ResolutionComponentProps {
   resolutionUrl: string | null;
 };

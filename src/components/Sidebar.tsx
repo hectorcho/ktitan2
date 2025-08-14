@@ -167,8 +167,8 @@ const Sidebar: React.FC = () => {
             />
 
             <Item
-              title="허위정보 탐지"
-              to="/communityfeed"
+              title="분쟁 동향 추적"
+              to="/conflicts"
               icon={<FeedOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
