@@ -49,6 +49,12 @@ export interface CommunityData {
   comments: number;
 };
 
+export interface Conflict {
+  id: string;
+  title: string;
+  path: string;
+};
+
 export type ConflictConditionStatus = "improved" | "deteriorated" | "unchanged" | "critical";
 export interface ConflictEvent {
   id: string;

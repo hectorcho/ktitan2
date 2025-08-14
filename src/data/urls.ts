@@ -15,3 +15,6 @@ export const availableDatesUrl =
 
 export const koreaRiskScoreUrl =
   "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/pmesii/kr.csv";
+
+export const conflictListUrl =
+  "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/conflicts/conflict_list.json";
