@@ -4,39 +4,6 @@ import { useState, useCallback } from "react";
 import type { Country } from "../types/interfaces";
 import { countryReportsUrl } from "../data/urls";
 
-// function objectToMarkdown(obj: any, indent = "") {
-//   let markdown = "";
-
-//   for (const key in obj) {
-//     if (Object.prototype.hasOwnProperty.call(obj, key)) {
-//       const value = obj[key];
-//       const newIndent = indent + "  "; // Two spaces for indentation
-
-//       if (typeof value === "object" && value !== null) {
-//         if (Array.isArray(value)) {
-//           markdown += `${indent}- **${key}**: \n`;
-//           value.forEach((item, index) => {
-//             if (typeof item === "object" && item !== null) {
-//               markdown += `${newIndent}  - Item ${index + 1}:\n`;
-//               markdown += objectToMarkdown(item, newIndent + "    ");
-//             } else {
-//               markdown += `${newIndent}  - ${item}\n`;
-//             }
-//           });
-//         } else {
-//           // Nested object
-//           markdown += `${indent}- **${key}**:\n`;
-//           markdown += objectToMarkdown(value, newIndent);
-//         }
-//       } else {
-//         // Primitive value
-//         markdown += `${indent}- **${key}**: ${value}\n`;
-//       }
-//     }
-//   }
-//   return markdown;
-// }
-
 export const getKstDate = (): string => {
   const currentDate = new Date();
   const options: Intl.DateTimeFormatOptions = {

@@ -2,7 +2,7 @@ export const communityDataListUrl =
   "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/community_training_2025-08-18.json";
 
 export const eventsListUrl =
-  "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/events_2025.json";
+  "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/calendar/events_2025.json";
 
 export const newsDataListUrl =
   "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/news_articles/";
@@ -18,3 +18,9 @@ export const koreaRiskScoreUrl =
 
 export const conflictListUrl =
   "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/conflicts/conflict_list.json";
+
+export const conflictRootUrl =
+  "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/conflicts";
+
+export const eventSummaryUrl =
+  "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/calendar/events_2025.json";

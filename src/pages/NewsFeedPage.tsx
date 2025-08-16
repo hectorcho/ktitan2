@@ -18,7 +18,7 @@ const NewsFeedPage: React.FC = () => {
         overflowY: 'hidden',
       }}
     >
-      <Header title="국내 주요 정세" subtitle="" />
+      <Header title="국내 주요 뉴스" subtitle="" />
       
         <Grid container spacing={2} sx={{flexGrow: 1, overflowY: 'hidden'}}>
           <Grid size={6} sx={{height: '100%', overflowY: 'auto'}}>

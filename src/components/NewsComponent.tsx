@@ -11,6 +11,14 @@ import type {
 } from "../types/interfaces";
 import { newsDataListUrl } from "../data/urls";
 
+const translateSource = (source: string) => {
+  if (source == "chosun") {
+    return "조선일보";
+  } else if (source == "yna") {
+    return "연합뉴스";
+  }
+};
+
 const NewsCard: React.FC<NewsCardProps> = ({
   data,
   isSelected,
@@ -22,13 +30,33 @@ const NewsCard: React.FC<NewsCardProps> = ({
     if (isDashboard) {
       return colors.primary[400];
     } else {
-      return isSelected ? colors.primary[800] : colors.primary[400];
+      return isSelected ? colors.primary[900] : colors.primary[400];
     }
   };
   return (
-    <Box sx={{ backgroundColor: bgColor, width: "100%", height: "100%" }}>
+    <Box
+      sx={{
+        backgroundColor: bgColor,
+        width: "100%",
+        height: "100%",
+        borderRadius: 3,
+        padding: "10px",
+        border: isDashboard ? '1px solid black' : ''
+      }}
+    >
       <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-        <Link href={data.url} target="_blank" rel="noopener" color="inherit">
+        <Link
+          href={data.url}
+          target="_blank"
+          rel="noopener"
+          color="inherit"
+          sx={{
+            
+            "&:hover": {
+              color: colors.blueAccent[400],
+            },
+          }}
+        >
           {data.title}
         </Link>
       </Typography>
@@ -45,7 +73,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
         {data.summary}
       </Typography>
 
-      <Typography>{`${data.source}, ${data.date}`}</Typography>
+      <Typography>{`${translateSource(data.source)}, ${data.date}`}</Typography>
     </Box>
   );
 };
@@ -93,7 +121,7 @@ const NewsComponent: React.FC<NewsComponentProps> = ({
   isDashboard,
 }) => {
   const currDate = getKstDate();
-  const dailyNewsUrl = `${newsDataListUrl}/${currDate}/daily_news.json`
+  const dailyNewsUrl = `${newsDataListUrl}/${currDate}/daily_news.json`;
   const { data, isLoading, error } = useFetchData<NewsData[]>(dailyNewsUrl);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
@@ -108,7 +136,7 @@ const NewsComponent: React.FC<NewsComponentProps> = ({
   };
 
   return (
-    <List sx={{padding: '0px'}}>
+    <List sx={{ padding: "0px" }}>
       {!isLoading &&
         !error &&
         data &&

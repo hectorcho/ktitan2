@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import TrendingDownIcon from '@mui/icons-material/TrendingDown';
-import OfflineBoltIcon from '@mui/icons-material/OfflineBolt';
-import HorizontalRuleIcon from '@mui/icons-material/HorizontalRule';
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import TrendingDownIcon from "@mui/icons-material/TrendingDown";
+import OfflineBoltIcon from "@mui/icons-material/OfflineBolt";
+import HorizontalRuleIcon from "@mui/icons-material/HorizontalRule";
 
 import {
   Box,
@@ -14,7 +14,7 @@ import {
   Grid,
   Link,
   Divider,
-  type SvgIconProps
+  type SvgIconProps,
 } from "@mui/material";
 import { tokens } from "../theme";
 import type {
@@ -23,32 +23,60 @@ import type {
   ConflictCardProps,
   ConflictConditionStatus,
   ConflictEvent,
-  ConflictComponentProps
+  ConflictComponentProps,
 } from "../types/interfaces";
 import { useFetchCommunityData } from "../hooks/useCommunity";
 import { communityDataListUrl } from "../data/urls";
 import type { JSX } from "react";
+import { useFetchConflictEvents } from "../hooks/useConflict";
 
 interface RenderIconProps {
   condition: ConflictConditionStatus;
 }
 
-const renderIcon = ({condition}: RenderIconProps): JSX.Element => {
+const renderIcon = ({ condition }: RenderIconProps): JSX.Element => {
   const iconProps: SvgIconProps = {
-    sx: {fontSize: 'inherit', fontWeight: 'inherit', verticalAlign: 'middle'}
+    sx: { fontSize: "100", verticalAlign: "middle" },
   };
 
   if (condition == "improved") {
-    return <TrendingUpIcon {...iconProps} sx={{...iconProps.sx, color: "#4CBB17"}}/>
+    return (
+      <TrendingUpIcon
+        {...iconProps}
+        sx={{ ...iconProps.sx, color: "#4CBB17" }}
+      />
+    );
   } else if (condition == "deteriorated") {
-    return <TrendingDownIcon {...iconProps} sx={{...iconProps.sx, color: "#FF7800"}}/>
+    return (
+      <TrendingDownIcon
+        {...iconProps}
+        sx={{ ...iconProps.sx, color: "#FF7800" }}
+      />
+    );
   } else if (condition == "unchanged") {
-    return <HorizontalRuleIcon {...iconProps} sx={{...iconProps.sx}} />
+    return <HorizontalRuleIcon {...iconProps} sx={{ ...iconProps.sx }} />;
   } else {
     //  if (condition == "critical")
-    return <OfflineBoltIcon {...iconProps} sx={{...iconProps.sx, color: "#E60000"}}/>
+    return (
+      <OfflineBoltIcon
+        {...iconProps}
+        sx={{ ...iconProps.sx, color: "#E60000" }}
+      />
+    );
   }
-  
+};
+
+const translateCondition = (condition: string): string => {
+  if (condition == "unchanged") {
+    return "유지";
+  } else if (condition == "improved") {
+    return "개선";
+  } else if (condition == "deteriorated") {
+    return "악화";
+  } else {
+    // condition == 'critical'
+    return "위기";
+  }
 };
 
 const ConflictCard: React.FC<ConflictCardProps> = ({
@@ -62,20 +90,30 @@ const ConflictCard: React.FC<ConflictCardProps> = ({
     if (dashboard) {
       return colors.primary[400];
     } else {
-      return selected ? colors.primary[800] : colors.primary[400]
+      return selected ? colors.primary[900] : colors.primary[400];
     }
   };
 
   return (
-    <Box sx={{ backgroundColor: bgColor, width: "100%", borderRadius: 3, padding: '10px' }}>
+    <Box
+      sx={{
+        backgroundColor: bgColor,
+        width: "100%",
+        borderRadius: 3,
+        padding: "10px",
+      }}
+    >
       <Grid container>
-        <Grid size={8}>
+        <Grid size={9}>
+          <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+            [{data.date}]
+          </Typography>
+
           <Typography variant="h5" sx={{ fontWeight: "bold" }}>
             {data.title}
           </Typography>
 
           <Typography
-            
             sx={{
               overflow: "hidden",
               textOverflow: "ellipsis",
@@ -86,11 +124,10 @@ const ConflictCard: React.FC<ConflictCardProps> = ({
           >
             {data.summary}
           </Typography>
- 
         </Grid>
 
         <Grid
-          size={4}
+          size={3}
           sx={{
             padding: "10px",
             display: "flex",
@@ -105,8 +142,8 @@ const ConflictCard: React.FC<ConflictCardProps> = ({
               alignItems: "center",
             }}
           >
-            <Typography variant="h5">{data.condition}</Typography>
-            {renderIcon({condition: data.condition})}
+            <Typography variant="h5">{translateCondition(data.condition)}</Typography>
+            {renderIcon({ condition: data.condition })}
           </Box>
         </Grid>
       </Grid>
@@ -117,10 +154,12 @@ const ConflictCard: React.FC<ConflictCardProps> = ({
 const ConflictComponent: React.FC<ConflictComponentProps> = ({
   onCardClick,
   dashboard,
+  conflictId,
 }) => {
-  const { data, isLoading, error } =
-    useFetchCommunityData(communityDataListUrl);
+  const { data, isLoading, error } = useFetchConflictEvents(conflictId);
   const [isActive, setIsActive] = useState<number | null>(null);
+
+  console.log(data);
 
   const handleCardClick = (url: string, index: number) => {
     if (isActive === index) {
@@ -134,23 +173,23 @@ const ConflictComponent: React.FC<ConflictComponentProps> = ({
 
   return (
     <>
-      <List sx={{padding: '0px'}}>
+      <List sx={{ padding: "0px" }}>
         {!isLoading &&
           !error &&
           data &&
           data.map((row: ConflictEvent, index: number) => (
             <ListItem
               key={index}
-              onClick={() => handleCardClick(row.resolutionUrl, index)}
+              onClick={() => handleCardClick(row.reportUrl, index)}
             >
-              <ConflictCard      
+              
+              <ConflictCard
                 data={row}
                 selected={index === isActive}
-                dashboard={isDashboard}
+                dashboard={dashboard}
               />
             </ListItem>
           ))}
-        <Divider />
       </List>
     </>
   );

@@ -21,6 +21,15 @@ export interface CalendarEvent {
   end: string | Date;
   location: string;
   description: string;
+  id: string;
+  summaryUrl: string;
+  eventUrl: string;
+};
+
+export interface CalendarDialogProps extends FetchResult<string> {
+  open: boolean;
+  onClose: () => void;
+  title: string;
 };
 
 export interface CommunityComponentProps {
@@ -75,6 +84,7 @@ export interface ConflictCardProps {
 export interface ConflictComponentProps {
   onCardClick: (url: string | null) => void;
   dashboard: boolean;
+  conflictId: string;
 }
 
 export interface ResolutionComponentProps {

@@ -1,6 +1,15 @@
 // src/pages/CommunityFeedPage.tsx
 
-import { Box, FormControl, Grid, InputLabel, MenuItem, Paper, Select, type SelectChangeEvent } from "@mui/material";
+import {
+  Box,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Paper,
+  Select,
+  type SelectChangeEvent,
+} from "@mui/material";
 import Header from "../components/Header";
 // import { tokens } from "../theme";
 import ConflictComponent from "../components/ConflictComponent";
@@ -10,11 +19,11 @@ import { useConflictSelect } from "../hooks/useConflict";
 import type { Conflict } from "../types/interfaces";
 
 interface ConflictSelectProps {
-  onSelectChange: (id: string, title: string, path: string) => void
-};
+  onSelectChange: (id: string, title: string, path: string) => void;
+}
 
 const ConflictSelect: React.FC<ConflictSelectProps> = ({ onSelectChange }) => {
-  const {data, isLoading, error} = useConflictSelect();
+  const { data, isLoading, error } = useConflictSelect();
   const [selected, setSelected] = useState<Conflict | null>(null);
 
   useEffect(() => {
@@ -25,9 +34,13 @@ const ConflictSelect: React.FC<ConflictSelectProps> = ({ onSelectChange }) => {
   }, [data, onSelectChange]);
 
   const handleSelectChange = (event: SelectChangeEvent) => {
-    setSelected(event.target.value);
-    onSelectChange(event.target.value);
-    console.log(event.target.value);
+    const selectedOption = JSON.parse(event.target.value) as Conflict;
+    setSelected(selectedOption);
+    onSelectChange(
+      selectedOption.id,
+      selectedOption.title,
+      selectedOption.path
+    );
   };
 
   return (
@@ -37,55 +50,74 @@ const ConflictSelect: React.FC<ConflictSelectProps> = ({ onSelectChange }) => {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={selected || ''}
+          value={selected ? JSON.stringify(selected) : ""}
           label="분쟁"
           onChange={handleSelectChange}
         >
           {!isLoading &&
             !error &&
             data &&
-            data.map((item) => <MenuItem value={item.id}>{item.title}</MenuItem>)}
+            data.map((item) => (
+              <MenuItem
+                value={JSON.stringify({
+                  title: item.title,
+                  id: item.id,
+                  path: item.path,
+                })}
+              >
+                {item.title}
+              </MenuItem>
+            ))}
         </Select>
       </FormControl>
     </Box>
-  )
-
+  );
 };
 
 const ConflictTrackerPage: React.FC = () => {
   // const theme = useTheme();
   // const colors = tokens(theme.palette.mode);
   const [selectedIndex, setSelectedIndex] = useState<string | null>(null);
-  const [conflictId, setConflictId] = useSt
+  // const [conflict, setConflict] = useState<Conflict | null>(null);
+  const [conflictId, setConflictId] = useState<string>('korean_peninsula');
+  const [conflictTitle, setConflictTitle] = useState<string>('대한민국-북한 한반도 분쟁');
+  const [conflictPath, setConflictPath] = useState<string | null>(null);
+
+  const handleSelectChange = (newId: string, newTitle: string, newPath: string) => {
+    setConflictId(newId);
+    setConflictTitle(newTitle);
+    setConflictPath(newPath);
+  }
 
   return (
     <Box
       sx={{
         m: "20px",
-        display: 'flex',
-        flexDirection: 'column',
-        overflowY: 'hidden',
+        display: "flex",
+        flexDirection: "column",
+        overflowY: "hidden",
       }}
     >
-      <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-        <Header title="분쟁 동향 추적" subtitle="" />
-        <ConflictSelect />
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Header title="분쟁 동향 추적" subtitle={conflictTitle} />
+        <ConflictSelect onSelectChange={handleSelectChange}/>
       </Box>
-      
-      
-        <Grid container spacing={2} sx={{flexGrow: 1, overflowY: 'hidden'}}>
-          <Grid size={6} sx={{height: '100%', overflowY: 'auto'}}>
-              <ConflictComponent onCardClick={setSelectedIndex} dashboard={false}/>
-          </Grid>
 
-          <Grid size={6} sx={{height: '100%', overflowY: 'auto'}}>
-            <ResolutionComponent 
-              resolutionUrl={selectedIndex}
-             />
-          </Grid>
-
+      <Grid container spacing={2} sx={{ flexGrow: 1, overflowY: "hidden" }}>
+        <Grid size={6} sx={{ height: "100%", overflowY: "auto" }}>
+          <ConflictComponent onCardClick={setSelectedIndex} dashboard={false} conflictId={conflictId}/>
         </Grid>
-      
+
+        <Grid size={6} sx={{ height: "100%", overflowY: "auto" }}>
+          <ResolutionComponent resolutionUrl={selectedIndex} />
+        </Grid>
+      </Grid>
     </Box>
   );
 };

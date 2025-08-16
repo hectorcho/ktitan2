@@ -130,12 +130,12 @@ const Sidebar: React.FC = () => {
                 >
                   미래혁신연구센터
                 </Typography>
-                <Typography variant="h5" color={colors.primary[700]}>
+                {/* <Typography variant="h5" color={colors.primary[700]}>
                   차세대C5시스템과
                 </Typography>
                 <Typography variant="h5" color={colors.primary[700]}>
                   군사과학기술연구병 조용현
-                </Typography>
+                </Typography> */}
                 
               </Box>
             </Box>
@@ -159,7 +159,7 @@ const Sidebar: React.FC = () => {
             />
 
             <Item
-              title="국내 주요 정세"
+              title="국내 주요 뉴스"
               to="/newsfeed"
               icon={<NewspaperOutlinedIcon />}
               selected={selected}

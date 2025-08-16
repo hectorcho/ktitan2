@@ -43,7 +43,7 @@ const DashboardPage: React.FC = () => {
           mb: "20px",
         }}
       >
-        <Header title={"국내외 정세판단/\n허위정보 탐지"} subtitle="" />
+        <Header title={"IIFA 대시보드"} subtitle="" />
         <RiskScoreComponent />
 
         {/* KEYWORD BOXES */}
@@ -198,7 +198,7 @@ const DashboardPage: React.FC = () => {
           }}
         >
           <Typography variant="h4" fontWeight={"bold"} padding={'5px'}>
-            국내 주요 정세
+            국내 주요 뉴스
           </Typography>
           <NewsComponent isDashboard={true} onCardClick={(_url) => {}}/>
         </Grid>
