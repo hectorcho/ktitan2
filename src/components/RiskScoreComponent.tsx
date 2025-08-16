@@ -31,7 +31,8 @@ const RiskScoreComponent: React.FC = () => {
   const mostRecentScore = Math.ceil(data?.[0].mean * 10) / 10;
   console.log(mostRecentScore);
   const mostRecentDate = data?.[0].day;
-  const diff = data?.[0].mean - data?.[1].mean;
+  let diff = data?.[0].mean - data?.[1].mean;
+  diff = Math.ceil(diff * 10) / 10;
   return (
     <Box
       sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
