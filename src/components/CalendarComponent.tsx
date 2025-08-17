@@ -68,17 +68,18 @@ const CalendarComponent: React.FC = () => {
     isLoading: fetchIsLoading,
     error: fetchError,
   } = useFetchCalendarData(eventsListUrl);
-  const { open, data, isLoading, error, handleOpenDialog, handleCloseDialog } =
+  const { open, data, title, isLoading, error, handleOpenDialog, handleCloseDialog } =
     useCalendarDialog();
 
   const handleEventClick = (clickInfo: any) => {
-    console.log(data);
     const clickedEvent = clickInfo.event;
     const fullObject = {
       ...clickedEvent.toPlainObject(),
       ...clickedEvent.extendedProps,
     };
-    console.log(fullObject);
+    const summaryUrl = fullObject.summaryUrl;
+    const eventTitle = fullObject.title;
+    handleOpenDialog(eventTitle, summaryUrl)
   };
 
   if (fetchIsLoading) {
@@ -107,12 +108,14 @@ const CalendarComponent: React.FC = () => {
 
   return (
     <div>
-      {/* <CalendarDialog
+      <CalendarDialog
         open={open}
         onClose={handleCloseDialog}
-        title= 
-      
-      /> */}
+        title={''}
+        data={data}
+        isLoading={isLoading}
+        error={error}
+      />
 
       <FullCalendar
       height={"75vh"}

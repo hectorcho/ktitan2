@@ -38,16 +38,18 @@ export const useFetchCalendarData = (
 export const useCalendarDialog = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [id, setId] = useState<string | null>(null);
+  const [title, setTitle] = useState<string>('Loading title...');
   const [data, setData] = useState<string>("Loading content...");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleOpenDialog = useCallback(async (url: string) => {
+  const handleOpenDialog = useCallback(async (title: string, url: string) => {
     setId(url);
     setOpen(true);
     setIsLoading(true);
     setError(null);
     setData("Fetching event data...");
+    setTitle("Fetching event title...")
 
     try {
       const response = await fetch(url);
@@ -57,9 +59,11 @@ export const useCalendarDialog = () => {
 
       const result = await response.text();
       setData(result);
+      setTitle(title);
     } catch (err) {
       setError('Failed to load');
       setData('Error loading data');
+      setTitle("Error loading title");
 
     } finally {
       setIsLoading(false)
@@ -74,5 +78,5 @@ export const useCalendarDialog = () => {
     setError(null);
   }, []);
 
-  return {open, data, isLoading, error, handleOpenDialog, handleCloseDialog}
+  return {open, data, title, isLoading, error, handleOpenDialog, handleCloseDialog}
 };
