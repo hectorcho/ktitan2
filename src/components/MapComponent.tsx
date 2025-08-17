@@ -1,6 +1,6 @@
 // src/components/MapComponent.tsx
-import React, { type JSX } from "react";
-import { MapContainer, TileLayer, Marker } from "react-leaflet";
+import React from "react";
+import { MapContainer, TileLayer } from "react-leaflet";
 import { useMapDialog } from "../hooks/useMapDialog";
 import {
   Dialog,
@@ -75,7 +75,7 @@ const MapComponent: React.FC<MapComponentProps> = ({
   zoomLevel,
   isDashboard,
 }) => {
-  const { data: countries, isLoading, error } = useCountryList();
+  const { data: countries } = useCountryList();
   const {
     openDialog,
     selectedCountry,

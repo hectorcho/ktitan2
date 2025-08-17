@@ -109,14 +109,14 @@ const ConflictTrackerPage: React.FC = () => {
         <ConflictSelect onSelectChange={handleSelectChange}/>
       </Box>
 
-      <Grid container spacing={2} sx={{ flexGrow: 1, overflowY: "hidden" }}>
-        <Grid size={6} sx={{ height: "100%", overflowY: "auto" }}>
+      <Grid container spacing={2} sx={{ flexGrow: 1, overflowY: "hidden", justifyContent: 'center', alignItems: 'center' }}>
+        <Grid size={8} sx={{ height: "100%", overflowY: "auto" }}>
           <ConflictComponent onCardClick={setSelectedIndex} dashboard={false} conflictId={conflictId}/>
         </Grid>
 
-        <Grid size={6} sx={{ height: "100%", overflowY: "auto" }}>
+        {/* <Grid size={6} sx={{ height: "100%", overflowY: "auto" }}>
           <ResolutionComponent resolutionUrl={selectedIndex} />
-        </Grid>
+        </Grid> */}
       </Grid>
     </Box>
   );

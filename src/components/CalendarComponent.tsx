@@ -34,9 +34,7 @@ const CalendarDialog: React.FC<CalendarDialogProps> = ({
   open,
   onClose,
   title,
-  data,
-  isLoading,
-  error,
+  data
 }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -68,7 +66,7 @@ const CalendarComponent: React.FC = () => {
     isLoading: fetchIsLoading,
     error: fetchError,
   } = useFetchCalendarData(eventsListUrl);
-  const { open, data, title, isLoading, error, handleOpenDialog, handleCloseDialog } =
+  const { open, data, isLoading, error, handleOpenDialog, handleCloseDialog } =
     useCalendarDialog();
 
   const handleEventClick = (clickInfo: any) => {

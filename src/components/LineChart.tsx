@@ -64,9 +64,9 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard, title }) => {
         setLoading(false);
       }
 
-      if (title === "PMESII") {
-        const response = await fetch("");
-      }
+      // if (title === "PMESII") {
+      //   const response = await fetch("");
+      // }
     };
     fetchData();
   }, [url]);
@@ -80,7 +80,7 @@ const LineChart: React.FC<LineChartProps> = ({ url, isDashboard, title }) => {
       (col) => col !== "type" && col !== "event_description"
     );
     const xName = relevantCols[0];
-    const xData = dataRows.map((row) => row[xName]);
+    // const xData = dataRows.map((row) => row[xName]);
 
     // Create a trace for subsequent columns
     const yNames = relevantCols.slice(1);

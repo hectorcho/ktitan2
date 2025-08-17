@@ -12,21 +12,15 @@ import {
   List,
   ListItem,
   Grid,
-  Link,
-  Divider,
   type SvgIconProps,
 } from "@mui/material";
 import { tokens } from "../theme";
 import type {
-  CommunityComponentProps,
-  CommunityData,
   ConflictCardProps,
   ConflictConditionStatus,
   ConflictEvent,
   ConflictComponentProps,
 } from "../types/interfaces";
-import { useFetchCommunityData } from "../hooks/useCommunity";
-import { communityDataListUrl } from "../data/urls";
 import type { JSX } from "react";
 import { useFetchConflictEvents } from "../hooks/useConflict";
 
