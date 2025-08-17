@@ -47,7 +47,7 @@ const CommunityCard: React.FC<CommunityCardProps> = ({
     }
   };
   return (
-    <Box sx={{ backgroundColor: bgColor, width: "100%" }}>
+    <Box sx={{ backgroundColor: bgColor, width: "100%", borderRadius: 3, padding: "10px", border: isDashboard ? '1px solid black' : '' }}>
       <Grid container>
         <Grid size={8}>
           <Typography variant="h5" sx={{ fontWeight: "bold" }}>

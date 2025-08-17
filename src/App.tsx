@@ -49,6 +49,7 @@ function App() {
               <Route path='/report' element={<ReportPage />} />
               <Route path='/kwfilters' element={<KeywordFilterPage />} />
               <Route path='/conflicts' element={<ConflictTrackerPage />} />
+              <Route path='/communityfeed' element={<CommunityFeedPage />} />
               <Route path='/newsfeed' element={<NewsFeedPage />} />
               <Route path='/calendar' element={<CalendarPage />} />
             </Routes>

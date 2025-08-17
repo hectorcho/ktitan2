@@ -1,5 +1,5 @@
 // src/components/MapComponent.tsx
-import React from "react";
+import React, { type JSX } from "react";
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import { useMapDialog } from "../hooks/useMapDialog";
 import {
@@ -15,9 +15,10 @@ import { tokens } from "../theme";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 // Import utilities and data that MapComponent needs
-import { createFlagIcon } from "../utils/leafletUtils";
-import { countries } from "../data/countryList";
+// import { countries } from "../data/countryList";
 import type { Country } from "../types/interfaces"; // Ensure City interface is available
+import { useCountryList } from "../hooks/useMap";
+import FlagMarker from "./FlagMarker";
 
 interface MapDialogProps {
   open: boolean;
@@ -74,6 +75,7 @@ const MapComponent: React.FC<MapComponentProps> = ({
   zoomLevel,
   isDashboard,
 }) => {
+  const { data: countries, isLoading, error } = useCountryList();
   const {
     openDialog,
     selectedCountry,
@@ -95,37 +97,59 @@ const MapComponent: React.FC<MapComponentProps> = ({
     "kp",
     "cn",
   ];
-  let markersToRender = [];
 
-  if (isDashboard) {
-    markersToRender = countries
-      .filter((country) => majorCountryCodes.includes(country.code))
-      .map((country) => (
-        <Marker
-          key={country.id}
-          position={country.positionDashboard ? country.positionDashboard : country.position}
-          icon={createFlagIcon(country.code, country.riskScore, isDashboard)}
-          eventHandlers={{
-            click: () => {
-              handleOpenDialog(country); // Call the prop function on click
-            },
-          }}
-        ></Marker>
-      ));
-  } else {
-    markersToRender = countries.map((country) => (
-      <Marker
-        key={country.id}
-        position={country.position}
-        icon={createFlagIcon(country.code, country.riskScore, isDashboard)}
-        eventHandlers={{
-          click: () => {
-            handleOpenDialog(country); // Call the prop function on click
-          },
-        }}
-      ></Marker>
-    ));
+  let countriesToRender: Country[] = [];
+  if (countries) {
+    if (isDashboard) {
+      countriesToRender = countries.filter((country) =>
+        majorCountryCodes.includes(country.code)
+      );
+    } else {
+      countriesToRender = countries;
+    }
   }
+
+  // if (isDashboard) {
+  //   markersToRender = countries
+  //     ? countries
+  //         .filter((country) => majorCountryCodes.includes(country.code))
+  //         .map((country) => (
+  //           <Marker
+  //             key={country.id}
+  //             position={
+  //               country.positionDashboard
+  //                 ? country.positionDashboard
+  //                 : country.position
+  //             }
+  //             icon={createFlagIcon(
+  //               country.code,
+  //               country.riskScore,
+  //               isDashboard
+  //             )}
+  //             eventHandlers={{
+  //               click: () => {
+  //                 handleOpenDialog(country); // Call the prop function on click
+  //               },
+  //             }}
+  //           ></Marker>
+  //         ))
+  //     : null;
+  // } else {
+  //   markersToRender = countries
+  //     ? countries.map((country) => (
+  //         <Marker
+  //           key={country.id}
+  //           position={country.position}
+  //           icon={createFlagIcon(country.code, country.riskScore, isDashboard)}
+  //           eventHandlers={{
+  //             click: () => {
+  //               handleOpenDialog(country); // Call the prop function on click
+  //             },
+  //           }}
+  //         ></Marker>
+  //       ))
+  //     : null;
+  // }
 
   return (
     <div className="map-container" style={{ height: "100%", width: "100%" }}>
@@ -152,8 +176,15 @@ const MapComponent: React.FC<MapComponentProps> = ({
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        
-        {markersToRender}
+
+        {countriesToRender.map((country) => (
+          <FlagMarker
+            key={country.id}
+            country={country}
+            isDashboard={isDashboard}
+            onMarkerClick={handleOpenDialog}
+          />
+        ))}
       </MapContainer>
     </div>
   );

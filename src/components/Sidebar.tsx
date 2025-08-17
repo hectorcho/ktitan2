@@ -12,6 +12,7 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import SummarizeOutlinedIcon from '@mui/icons-material/SummarizeOutlined';
 import NewspaperOutlinedIcon from '@mui/icons-material/NewspaperOutlined';
 import FeedOutlinedIcon from '@mui/icons-material/FeedOutlined';
+import ReportProblemOutlinedIcon from '@mui/icons-material/ReportProblemOutlined';
 
 interface SidebarItemProps {
   title: string;
@@ -169,6 +170,14 @@ const Sidebar: React.FC = () => {
             <Item
               title="분쟁 동향 추적"
               to="/conflicts"
+              icon={<ReportProblemOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            <Item
+              title="허위정보 탐지"
+              to="/communityfeed"
               icon={<FeedOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}

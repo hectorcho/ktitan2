@@ -24,3 +24,6 @@ export const conflictRootUrl =
 
 export const eventSummaryUrl =
   "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/calendar/events_2025.json";
+
+export const countryListUrl =
+  "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/pmesii/country_list.json";
