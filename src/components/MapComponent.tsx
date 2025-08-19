@@ -40,7 +40,11 @@ const MapDialog: React.FC<MapDialogProps> = ({
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   return (
-    <Dialog open={open} onClose={onClose} fullScreen>
+    <Dialog
+      open={open}
+      onClose={onClose}
+      slotProps={{ paper: { sx: { width: "60vw", maxWidth: "none" } } }}
+    >
       <AppBar
         sx={{ position: "relative", backgroundColor: colors.primary[400] }}
       >

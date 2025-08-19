@@ -150,6 +150,7 @@ const ConflictComponent: React.FC<ConflictComponentProps> = ({
   dashboard,
   conflictId,
 }) => {
+  console.log(conflictId);
   const { data, isLoading, error } = useFetchConflictEvents(conflictId);
   const [isActive, setIsActive] = useState<number | null>(null);
 

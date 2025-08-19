@@ -26,12 +26,12 @@ const ConflictSelect: React.FC<ConflictSelectProps> = ({ onSelectChange }) => {
   const { data, isLoading, error } = useConflictSelect();
   const [selected, setSelected] = useState<Conflict | null>(null);
 
-  useEffect(() => {
-    if (data && data.length > 0) {
-      setSelected(data[0]);
-      onSelectChange(data[0].id, data[0].title, data[0].path);
-    }
-  }, [data, onSelectChange]);
+  // useEffect(() => {
+  //   if (data && data.length > 0) {
+  //     setSelected(data[0]);
+  //     onSelectChange(data[0].id, data[0].title, data[0].path);
+  //   }
+  // }, [data, onSelectChange]);
 
   const handleSelectChange = (event: SelectChangeEvent) => {
     const selectedOption = JSON.parse(event.target.value) as Conflict;
@@ -84,6 +84,7 @@ const ConflictTrackerPage: React.FC = () => {
   const [conflictPath, setConflictPath] = useState<string | null>(null);
 
   const handleSelectChange = (newId: string, newTitle: string, newPath: string) => {
+    console.log(newId, newTitle, newPath);
     setConflictId(newId);
     setConflictTitle(newTitle);
     setConflictPath(newPath);
