@@ -10,6 +10,7 @@ import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SearchIcon from "@mui/icons-material/Search";
+import Clock from "./ClockComponent";
 
 const Topbar: React.FC = () => {
   const theme = useTheme();
@@ -30,6 +31,10 @@ const Topbar: React.FC = () => {
           <SearchIcon />
         </IconButton>
 
+      </Box>
+
+      <Box display={'flex'} justifyContent={'center'} alignItems={'center'}>
+        <Clock />
       </Box>
 
       {/* ICONS */}

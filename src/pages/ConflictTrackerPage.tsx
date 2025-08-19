@@ -6,15 +6,13 @@ import {
   Grid,
   InputLabel,
   MenuItem,
-  Paper,
   Select,
   type SelectChangeEvent,
 } from "@mui/material";
 import Header from "../components/Header";
 // import { tokens } from "../theme";
 import ConflictComponent from "../components/ConflictComponent";
-import { useEffect, useState } from "react";
-import ResolutionComponent from "../components/ResolutionComponent";
+import { useState } from "react";
 import { useConflictSelect } from "../hooks/useConflict";
 import type { Conflict } from "../types/interfaces";
 
@@ -25,13 +23,6 @@ interface ConflictSelectProps {
 const ConflictSelect: React.FC<ConflictSelectProps> = ({ onSelectChange }) => {
   const { data, isLoading, error } = useConflictSelect();
   const [selected, setSelected] = useState<Conflict | null>(null);
-
-  // useEffect(() => {
-  //   if (data && data.length > 0) {
-  //     setSelected(data[0]);
-  //     onSelectChange(data[0].id, data[0].title, data[0].path);
-  //   }
-  // }, [data, onSelectChange]);
 
   const handleSelectChange = (event: SelectChangeEvent) => {
     const selectedOption = JSON.parse(event.target.value) as Conflict;
@@ -77,11 +68,12 @@ const ConflictSelect: React.FC<ConflictSelectProps> = ({ onSelectChange }) => {
 const ConflictTrackerPage: React.FC = () => {
   // const theme = useTheme();
   // const colors = tokens(theme.palette.mode);
-  const [selectedIndex, setSelectedIndex] = useState<string | null>(null);
+  // const [selectedIndex, setSelectedIndex] = useState<string | null>(null);
+  const [, setSelectedIndex] = useState<string | null>(null);
   // const [conflict, setConflict] = useState<Conflict | null>(null);
   const [conflictId, setConflictId] = useState<string>('korean_peninsula');
   const [conflictTitle, setConflictTitle] = useState<string>('대한민국-북한 한반도 분쟁');
-  const [conflictPath, setConflictPath] = useState<string | null>(null);
+  const [, setConflictPath] = useState<string | null>(null);
 
   const handleSelectChange = (newId: string, newTitle: string, newPath: string) => {
     console.log(newId, newTitle, newPath);

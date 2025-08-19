@@ -124,14 +124,15 @@ const NewsComponent: React.FC<NewsComponentProps> = ({
   const dailyNewsUrl = `${newsDataListUrl}/${currDate}/daily_news.json`;
   const { data, isLoading, error } = useFetchData<NewsData[]>(dailyNewsUrl);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  
 
   const handleCardClick = (url: string, index: number) => {
     if (activeIndex === index) {
       setActiveIndex(null);
-      onCardClick(null);
+      onCardClick(null, null);
     } else {
       setActiveIndex(index);
-      onCardClick(url);
+      onCardClick(url, data ? data[index] : null);
     }
   };
 

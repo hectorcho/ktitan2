@@ -37,7 +37,8 @@ export const useFetchCalendarData = (
 
 export const useCalendarDialog = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const [id, setId] = useState<string | null>(null);
+  // const [id, setId] = useState<string | null>(null);
+  const [ , setId] = useState<string | null>(null);
   const [title, setTitle] = useState<string>('Loading title...');
   const [data, setData] = useState<string>("Loading content...");
   const [isLoading, setIsLoading] = useState<boolean>(false);

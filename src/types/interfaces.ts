@@ -107,6 +107,6 @@ export interface NewsCardProps {
 };
 
 export interface NewsComponentProps {
-  onCardClick: (url: string | null) => void;
+  onCardClick: (url: string | null, cardData: NewsData | null) => void;
   isDashboard: boolean;
 };

@@ -15,13 +15,11 @@ import LineChart from "../components/LineChart";
 import NewsComponent from "../components/NewsComponent";
 import CommunityComponent from "../components/CommunityComponent";
 import RiskScoreComponent from "../components/RiskScoreComponent";
-import { getKstDate } from "../hooks/useMapDialog";
 // import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
 
 const DashboardPage: React.FC = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const currDate = getKstDate();
   
 
   return (
