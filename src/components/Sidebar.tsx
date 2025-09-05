@@ -9,10 +9,11 @@ import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import SummarizeOutlinedIcon from '@mui/icons-material/SummarizeOutlined';
-import NewspaperOutlinedIcon from '@mui/icons-material/NewspaperOutlined';
-import FeedOutlinedIcon from '@mui/icons-material/FeedOutlined';
-import ReportProblemOutlinedIcon from '@mui/icons-material/ReportProblemOutlined';
+import SummarizeOutlinedIcon from "@mui/icons-material/SummarizeOutlined";
+import NewspaperOutlinedIcon from "@mui/icons-material/NewspaperOutlined";
+import FeedOutlinedIcon from "@mui/icons-material/FeedOutlined";
+import ReportProblemOutlinedIcon from "@mui/icons-material/ReportProblemOutlined";
+import CameraAltOutlinedIcon from "@mui/icons-material/CameraAltOutlined";
 
 interface SidebarItemProps {
   title: string;
@@ -36,7 +37,7 @@ const Item: React.FC<SidebarItemProps> = ({
   const handleClick = () => {
     setSelected(title);
     navigate(to);
-  }
+  };
 
   return (
     <MenuItem
@@ -46,10 +47,9 @@ const Item: React.FC<SidebarItemProps> = ({
       icon={icon}
     >
       <Typography>{title}</Typography>
-      
+
       {/* {navigate(to)} */}
     </MenuItem>
-    
   );
 };
 
@@ -63,7 +63,7 @@ const Sidebar: React.FC = () => {
     <Box
       sx={{
         "& .ps-sidebar-root": {
-          borderRight: 0
+          borderRight: 0,
         },
         "& .ps-sidebar-container": {
           background: `${colors.primary[400]} !important`,
@@ -81,7 +81,7 @@ const Sidebar: React.FC = () => {
           color: "#6870fa !important",
         },
         flex: 1,
-        display: 'flex',
+        display: "flex",
       }}
     >
       <ProSidebar collapsed={isCollapsed} width="200px">
@@ -137,12 +137,11 @@ const Sidebar: React.FC = () => {
                 <Typography variant="h5" color={colors.primary[700]}>
                   군사과학기술연구병 조용현
                 </Typography> */}
-                
               </Box>
             </Box>
           )}
 
-          <Box paddingLeft={isCollapsed ? undefined: '0%'}>
+          <Box paddingLeft={isCollapsed ? undefined : "0%"}>
             <Item
               title="대시보드"
               to="/"
@@ -207,7 +206,6 @@ const Sidebar: React.FC = () => {
               setSelected={setSelected}
             />
 
-
             <Item
               title="캘린더"
               to="/calendar"
@@ -216,10 +214,14 @@ const Sidebar: React.FC = () => {
               setSelected={setSelected}
             />
 
+            <Item
+              title="Camera Module"
+              to="/camera"
+              icon={<CameraAltOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
           </Box>
-
-
-
         </Menu>
       </ProSidebar>
     </Box>
