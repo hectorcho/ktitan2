@@ -176,9 +176,13 @@ const MapComponent: React.FC<MapComponentProps> = ({
         zoomControl={isDashboard ? false : true}
         style={{ height: "100%", width: "100%" }}
       >
-        <TileLayer
+        {/* <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        /> */}
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="http://localhost:3135/map/{z}/{x}/{y}.png"
         />
 
         {countriesToRender.map((country) => (
