@@ -75,7 +75,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <KeywordBox title="엔비디아.삼성.현대.GPU" subtitle="" quantity={2} />
+            <KeywordBox title="AI" subtitle="" quantity={2} />
           </Box>
           <Box
             sx={{
@@ -86,7 +86,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <KeywordBox title="정상회담 (한미, 한중)" subtitle="" quantity={2} />
+            <KeywordBox title="남북관계" subtitle="" quantity={2} />
           </Box>
           <Box
             sx={{
@@ -97,7 +97,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <KeywordBox title="APEC" subtitle="" quantity={0} />
+            <KeywordBox title="고용불안" subtitle="" quantity={1} />
           </Box>
           <Box
             sx={{
@@ -108,7 +108,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <KeywordBox title="부동산" subtitle="" quantity={-1} />
+            <KeywordBox title="부동산" subtitle="" quantity={0} />
           </Box>
 
           <Box
@@ -130,7 +130,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <KeywordBox title="핵잠수함" subtitle="" quantity={3}/>
+            <KeywordBox title="북한위협.핵도미노" subtitle="" quantity={2}/>
           </Box>
           <Box
             sx={{
@@ -141,7 +141,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <KeywordBox title="정찰위성5호" subtitle="" quantity={2}/>
+            <KeywordBox title="핵잠수함" subtitle="" quantity={2}/>
           </Box>
           <Box
             sx={{
@@ -152,7 +152,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <KeywordBox title="북한도발" subtitle="" quantity={1}/>
+            <KeywordBox title="UAE수출" subtitle="" quantity={1}/>
           </Box>
           <Box
             sx={{
@@ -163,7 +163,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <KeywordBox title="북한제제" subtitle="" quantity={1}/>
+            <KeywordBox title="서울공항 촬영" subtitle="" quantity={1}/>
           </Box>
         </Box>
       </Box>
