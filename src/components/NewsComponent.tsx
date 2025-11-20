@@ -122,6 +122,7 @@ const NewsComponent: React.FC<NewsComponentProps> = ({
 }) => {
   const currDate = getKstDate();
   const dailyNewsUrl = `${newsDataListUrl}/${currDate}/daily_news.json`;
+  const localNewsSummaryUrl = `${newsDataListUrl}${currDate}/summary/`
   const { data, isLoading, error } = useFetchData<NewsData[]>(dailyNewsUrl);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   
@@ -142,9 +143,19 @@ const NewsComponent: React.FC<NewsComponentProps> = ({
         !error &&
         data &&
         data.map((row: NewsData, index: number) => (
+          // <ListItem
+          //   key={index}
+          //   onClick={() => handleCardClick(row.reportUrl, index)}
+          // >
+          //   <NewsCard
+          //     data={row}
+          //     isSelected={activeIndex === index}
+          //     isDashboard={isDashboard}
+          //   />
+          // </ListItem>
           <ListItem
             key={index}
-            onClick={() => handleCardClick(row.reportUrl, index)}
+            onClick={() => handleCardClick(`${localNewsSummaryUrl}/${row.id}.md`, index)}
           >
             <NewsCard
               data={row}

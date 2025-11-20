@@ -92,6 +92,7 @@ export interface ResolutionComponentProps {
 };
 
 export interface NewsData {
+  id: string;
   title: string;
   summary: string;
   source: string;
