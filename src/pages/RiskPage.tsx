@@ -43,7 +43,8 @@ const ChartSelect: React.FC<ChartSelectProps> = ({ onChartChange }) => {
           <MenuItem
             value={JSON.stringify({
               title: "Geopolitical Risk Index",
-              url: "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/gpr_daily.csv",
+              url: "http://localhost:3135/gpr_daily.csv"
+              // url: "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/gpr_daily.csv",
             })}
           >
             GPR (지정학적위험도) - 세계
@@ -51,7 +52,8 @@ const ChartSelect: React.FC<ChartSelectProps> = ({ onChartChange }) => {
           <MenuItem
             value={JSON.stringify({
               title: "Geopolitical Risk Index - Korea Historical",
-              url: "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/gpr_kor_historical.csv",
+              url: "http://localhost:3135/gpr_kor_historical.csv"
+              // url: "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/gpr_kor_historical.csv",
             })}
           >
             GPR (지정학적위험도) - 대한민국
@@ -59,7 +61,8 @@ const ChartSelect: React.FC<ChartSelectProps> = ({ onChartChange }) => {
           <MenuItem
             value={JSON.stringify({
               title: "PMESII 위험지수",
-              url: "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/pmesii_20241215_20250731_new_format.csv",
+              url: "http://localhost:3135/pmesii_20241215_20250731_new_format.csv"
+              // url: "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/pmesii_20241215_20250731_new_format.csv",
             })}
           >
             PMESII 위험지수
@@ -80,7 +83,7 @@ const ChartSelect: React.FC<ChartSelectProps> = ({ onChartChange }) => {
 
 const RiskPage: React.FC = () => {
   const [url, setUrl] = useState<string>(
-    "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/pmesii_20241215_20250731_new_format.csv"
+    "http://localhost:3135/pmesii_20241215_20250731_new_format.csv"
   );
   const [title, setTitle] = useState<string>("PMESII 위험지수");
 

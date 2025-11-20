@@ -177,7 +177,7 @@ const DashboardPage: React.FC = () => {
             title="PMESII"
           /> */}
           <LineChart
-            url="https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/pmesii_20241215_20250731_new_format.csv"
+            url="http://localhost:3135/pmesii_20241215_20250731_new_format.csv"
             isDashboard={true}
             title="PMESII 위험지수"
           />

@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { countryReportsUrl } from "../data/urls";
+
 
 // hook for loading final analysis report from server
 const useLoadFinalReport = (date: string) => {
@@ -20,7 +22,7 @@ const useLoadFinalReport = (date: string) => {
 
       try {
         const response = await fetch(
-          `https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/country_reports/${date}/kr_report.md`
+          `${countryReportsUrl}${date}/kr_report.md`
         );
 
         if (!response.ok) {

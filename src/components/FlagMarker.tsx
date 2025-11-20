@@ -4,6 +4,7 @@ import { Marker } from 'react-leaflet';
 import L from 'leaflet';
 import { useModifiedSvg } from '../hooks/useModifiedSvg';
 import type { Country } from '../types/interfaces';
+import { flagUrl } from '../data/urls';
 
 interface FlagMarkerProps {
   country: Country;
@@ -13,16 +14,21 @@ interface FlagMarkerProps {
 
 const FlagMarker: React.FC<FlagMarkerProps> = ({ country, isDashboard, onMarkerClick }) => {
   // Call the Hook at the top level of this new component
+  // const modifiedSvgUrl = useModifiedSvg(
+  //   `https://flagicons.lipis.dev/flags/4x3/${country.code.toLowerCase()}.svg`,
+  //   country.riskScore
+  // );
+
   const modifiedSvgUrl = useModifiedSvg(
-    `https://flagicons.lipis.dev/flags/4x3/${country.code.toLowerCase()}.svg`,
+    `${flagUrl}${country.code.toLowerCase()}.svg`,
     country.riskScore
-  );
+  )
 
   const icon = modifiedSvgUrl ? new L.Icon({
     iconUrl: modifiedSvgUrl,
     iconSize: isDashboard ? [52, 39] : [52, 39],
   }) : new L.Icon({
-    iconUrl: `https://flagicons.lipis.dev/flags/4x3/${country.code.toLowerCase()}.svg`,
+    iconUrl: `${flagUrl}${country.code.toLowerCase()}.svg`,
     iconSize: [40, 30],
   });
 
