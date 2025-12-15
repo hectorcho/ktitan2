@@ -20,7 +20,7 @@ import RiskScoreComponent from "../components/RiskScoreComponent";
 const DashboardPage: React.FC = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  
+
 
   return (
     <Box
@@ -86,7 +86,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <KeywordBox title="남북관계" subtitle="" quantity={2} />
+            <KeywordBox title="환율" subtitle="" quantity={2} />
           </Box>
           <Box
             sx={{
@@ -97,7 +97,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <KeywordBox title="고용불안" subtitle="" quantity={1} />
+            <KeywordBox title="개인정보유출" subtitle="" quantity={1} />
           </Box>
           <Box
             sx={{
@@ -108,7 +108,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <KeywordBox title="부동산" subtitle="" quantity={0} />
+            <KeywordBox title="반도체" subtitle="" quantity={1} />
           </Box>
 
           <Box
@@ -130,7 +130,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <KeywordBox title="북한위협.핵도미노" subtitle="" quantity={2}/>
+            <KeywordBox title="오산기지 통제권" subtitle="" quantity={2} />
           </Box>
           <Box
             sx={{
@@ -141,7 +141,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <KeywordBox title="핵잠수함" subtitle="" quantity={2}/>
+            <KeywordBox title="북한해커" subtitle="" quantity={2} />
           </Box>
           <Box
             sx={{
@@ -152,7 +152,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <KeywordBox title="UAE수출" subtitle="" quantity={1}/>
+            <KeywordBox title="전투복" subtitle="" quantity={1} />
           </Box>
           <Box
             sx={{
@@ -163,7 +163,7 @@ const DashboardPage: React.FC = () => {
               justifyContent: "center",
             }}
           >
-            <KeywordBox title="서울공항 촬영" subtitle="" quantity={1}/>
+            <KeywordBox title="미함정 MRO" subtitle="" quantity={1} />
           </Box>
         </Box>
       </Box>
@@ -184,7 +184,7 @@ const DashboardPage: React.FC = () => {
         </Grid>
 
         <Grid size={5} sx={{ height: "50%" }}>
-          <MapComponent initialPosition={[37.5665, 126.978]} zoomLevel={1} isDashboard={true}/>
+          <MapComponent initialPosition={[37.5665, 126.978]} zoomLevel={1} isDashboard={true} />
         </Grid>
 
         <Grid
@@ -198,7 +198,7 @@ const DashboardPage: React.FC = () => {
           <Typography variant="h4" fontWeight={"bold"} padding={'5px'}>
             국내 주요 뉴스
           </Typography>
-          <NewsComponent isDashboard={true} onCardClick={(_url) => {}}/>
+          <NewsComponent isDashboard={true} onCardClick={(_url) => { }} />
         </Grid>
 
         <Grid
@@ -214,7 +214,7 @@ const DashboardPage: React.FC = () => {
           </Typography>
           <CommunityComponent
             isDashboard={true}
-            onCardClick={(_url) => {}}
+            onCardClick={(_url) => { }}
           />
         </Grid>
       </Grid>
