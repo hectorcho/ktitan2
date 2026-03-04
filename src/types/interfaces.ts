@@ -7,13 +7,13 @@ export interface Country {
   positionDashboard?: [number, number];
   info: string;
   riskScore: number;
-};
+}
 
 export interface FetchResult<T> {
   data: T | null;
   isLoading: boolean;
   error: Error | string | null;
-};
+}
 
 export interface CalendarEvent {
   title: string;
@@ -24,24 +24,24 @@ export interface CalendarEvent {
   id: string;
   summaryUrl: string;
   eventUrl: string;
-};
+}
 
 export interface CalendarDialogProps extends FetchResult<string> {
   open: boolean;
   onClose: () => void;
   title: string;
-};
+}
 
 export interface CommunityComponentProps {
   onCardClick: (url: string | null) => void;
   isDashboard: boolean;
-};
+}
 
 export interface CommunityCardProps {
   data: CommunityData;
   isSelected: boolean;
   isDashboard: boolean;
-};
+}
 
 export interface CommunityData {
   title: string;
@@ -56,15 +56,19 @@ export interface CommunityData {
   views: number;
   likes: number;
   comments: number;
-};
+}
 
 export interface Conflict {
   id: string;
   title: string;
   path: string;
-};
+}
 
-export type ConflictConditionStatus = "improved" | "deteriorated" | "unchanged" | "critical";
+export type ConflictConditionStatus =
+  | "improved"
+  | "deteriorated"
+  | "unchanged"
+  | "critical";
 export interface ConflictEvent {
   id: string;
   condition: ConflictConditionStatus;
@@ -73,13 +77,13 @@ export interface ConflictEvent {
   date: string;
   url: string;
   reportUrl: string;
-};
+}
 
 export interface ConflictCardProps {
   data: ConflictEvent;
   selected: boolean;
   dashboard: boolean;
-};
+}
 
 export interface ConflictComponentProps {
   onCardClick: (url: string | null) => void;
@@ -89,7 +93,7 @@ export interface ConflictComponentProps {
 
 export interface ResolutionComponentProps {
   resolutionUrl: string | null;
-};
+}
 
 export interface NewsData {
   title: string;
@@ -98,15 +102,23 @@ export interface NewsData {
   date: string | Date;
   url: string;
   reportUrl: string;
-};
+}
 
 export interface NewsCardProps {
   data: NewsData;
   isSelected: boolean;
   isDashboard: boolean;
-};
+}
 
 export interface NewsComponentProps {
   onCardClick: (url: string | null, cardData: NewsData | null) => void;
   isDashboard: boolean;
-};
+}
+
+export type KeywordType = "national" | "military";
+
+export interface Keyword {
+  type: KeywordType;
+  keyword: string;
+  quantity: number;
+}

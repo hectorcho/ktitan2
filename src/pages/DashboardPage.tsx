@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import { tokens } from "../theme";
 import KeywordBox from "../components/KeywordBox";
+import KeywordComponent from "../components/KeywordComponent";
 import Header from "../components/Header";
 import MapComponent from "../components/MapComponent";
 import LineChart from "../components/LineChart";
@@ -45,7 +46,8 @@ const DashboardPage: React.FC = () => {
         <RiskScoreComponent />
 
         {/* KEYWORD BOXES */}
-        <Box
+        <KeywordComponent />
+        {/* <Box
           sx={{
             width: "70%",
             height: "100%",
@@ -165,7 +167,7 @@ const DashboardPage: React.FC = () => {
           >
             <KeywordBox title="미함정 MRO" subtitle="" quantity={1} />
           </Box>
-        </Box>
+        </Box> */}
       </Box>
 
       {/* STUFF */}

@@ -135,7 +135,13 @@ const Sidebar: React.FC = () => {
                   차세대C5시스템과
                 </Typography>
                 <Typography variant="h5" color={colors.primary[700]}>
-                  중령 이영화, 상병 조용현
+                  중령 이영화
+                </Typography>
+                <Typography variant="h5" color={colors.primary[700]}>
+                  병장 조용현, 병장 이제중
+                </Typography>
+                <Typography variant="h5" color={colors.primary[700]}>
+                  일병 박상준, 일병 이수형
                 </Typography>
               </Box>
             </Box>

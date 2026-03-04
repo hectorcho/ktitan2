@@ -27,3 +27,6 @@ export const eventSummaryUrl =
 
 export const countryListUrl =
   "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/pmesii/country_list.json";
+
+export const keywordListUrl =
+  "https://raw.githubusercontent.com/hectorcho/ktitan-public/refs/heads/main/pmesii/keyword_list.json";
